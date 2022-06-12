@@ -22,6 +22,7 @@ Route::get('/', function () {
 Route::name('admin.')->middleware('is_admin')->prefix('/admin')->group(function () {
     Route::controller(MenuController::class)->group(function(){
         Route::get('/beasiswa','beasiswa')->name('beasiswa');
+        Route::get('/kriteria','kriteria')->name('kriteria');
     });
 });
 Auth::routes();

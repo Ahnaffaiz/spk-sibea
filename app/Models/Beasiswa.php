@@ -9,4 +9,9 @@ class Beasiswa extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function getBobot()
+    {
+        return $this->hasMany(BobotKriteria::class, 'beasiswas_id', 'id');
+    }
 }

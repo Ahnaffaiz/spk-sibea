@@ -1,6 +1,6 @@
 
   <div wire:ignore.self class="modal fade" tabindex="-1" role="dialog" id="beasiswaModal">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Buat Beasiswa</h5>
@@ -9,94 +9,137 @@
           </button>
         </div>
         <div class="modal-body">
-          <div class="row mt-4">
-            <div class="col-12 col-lg-8 offset-lg-2">
-              <div class="wizard-steps">
-                <div class="wizard-step wizard-step-active">
-                  <div class="wizard-step-icon">
-                    <i class="fas fa-graduation-cap"></i>
-                  </div>
-                  <div class="wizard-step-label">
-                    Detail Beassiswa
-                  </div>
+          <div class="form-group">
+            <label for="nama">Nama</label>
+            <input type="text" name="nama" wire:model="nama" placeholder="masukkan nama beasiswa" class="form-control @error('nama') is-invalid @enderror">
+            @error('nama')
+              <span class="text-danger error"><small>{{ $message }}</small></span>
+            @enderror
+          </div>
+          <div class="bobot">
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="bobot.sr1">Status Rumah</label>
+                  <input type="number" name="bobot.sr1" wire:model="bobot.sr1" class="form-control @error('bobot.sr1') is-invalid @enderror">
+                  @error('bobot.sr1')
+                    <span class="text-danger error"><small>{{ $message }}</small></span>
+                  @enderror
                 </div>
-                <div class="wizard-step">
-                  <div class="wizard-step-icon">
-                    <i class="fas fa-box-open"></i>
-                  </div>
-                  <div class="wizard-step-label">
-                    Create an App
-                  </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="bobot.t01">Tanggungan</label>
+                  <input type="number" name="bobot.t01" wire:model="bobot.t01" class="form-control @error('bobot.t01') is-invalid @enderror">
+                  @error('bobot.t01')
+                    <span class="text-danger error"><small>{{ $message }}</small></span>
+                  @enderror
                 </div>
-                <div class="wizard-step">
-                  <div class="wizard-step-icon">
-                    <i class="fas fa-server"></i>
-                  </div>
-                  <div class="wizard-step-label">
-                    Server Information
-                  </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="bobot.p01">Penghasilan</label>
+                  <input type="number" name="bobot.p01" wire:model="bobot.p01" class="form-control @error('bobot.p01') is-invalid @enderror">
+                  @error('bobot.p01')
+                    <span class="text-danger error"><small>{{ $message }}</small></span>
+                  @enderror
                 </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="bobot.sj1">Skor Jiwa</label>
+                  <input type="number" name="bobot.sj1" wire:model="bobot.sj1" class="form-control @error('bobot.sj1') is-invalid @enderror">
+                  @error('bobot.sj1')
+                    <span class="text-danger error"><small>{{ $message }}</small></span>
+                  @enderror
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="bobot.sta">Status Ayah</label>
+                  <input type="number" name="bobot.sta" wire:model="bobot.sta" class="form-control @error('bobot.sta') is-invalid @enderror">
+                  @error('bobot.sta')
+                    <span class="text-danger error"><small>{{ $message }}</small></span>
+                  @enderror
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="bobot.spa">Pendidikan Ayah</label>
+                  <input type="number" name="bobot.spa" wire:model="bobot.spa" class="form-control @error('bobot.spa') is-invalid @enderror">
+                  @error('bobot.spa')
+                    <span class="text-danger error"><small>{{ $message }}</small></span>
+                  @enderror
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="bobot.ska">Pekerjaan Ayah</label>
+                  <input type="number" name="bobot.ska" wire:model="bobot.ska" class="form-control @error('bobot.ska') is-invalid @enderror">
+                  @error('bobot.ska')
+                    <span class="text-danger error"><small>{{ $message }}</small></span>
+                  @enderror
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="bobot.pa1">Penghasilan Ayah</label>
+                  <input type="number" name="bobot.pa1" wire:model="bobot.pa1" class="form-control @error('bobot.pa1') is-invalid @enderror">
+                  @error('bobot.pa1')
+                    <span class="text-danger error"><small>{{ $message }}</small></span>
+                  @enderror
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="bobot.sti">Status Ibu</label>
+                  <input type="number" name="bobot.sti" wire:model="bobot.sti" class="form-control @error('bobot.sti') is-invalid @enderror">
+                  @error('bobot.sti')
+                    <span class="text-danger error"><small>{{ $message }}</small></span>
+                  @enderror
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="bobot.spi">Pendidikan Ibu</label>
+                  <input type="number" name="bobot.spi" wire:model="bobot.spi" class="form-control @error('bobot.spi') is-invalid @enderror">
+                  @error('bobot.spi')
+                    <span class="text-danger error"><small>{{ $message }}</small></span>
+                  @enderror
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="sbobot.ki">Pekerjaan Ibu</label>
+                  <input type="number" name="bobot.ski" wire:model="bobot.ski" class="form-control @error('bobot.ski') is-invalid @enderror">
+                  @error('bobot.ski')
+                    <span class="text-danger error"><small>{{ $message }}</small></span>
+                  @enderror
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="bobot.pi1">Penghasilan Ibu</label>
+                  <input type="number" name="bobot.pi1" wire:model="bobot.pi1" class="form-control @error('bobot.pi1') is-invalid @enderror">
+                  @error('bobot.pi1')
+                    <span class="text-danger error"><small>{{ $message }}</small></span>
+                  @enderror
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h6>Total : {{$total}}</h6>
               </div>
             </div>
           </div>
-
-          <form class="wizard-content mt-2">
-            <div class="wizard-pane">
-              <div class="form-group row align-items-center">
-                <label class="col-md-4 text-md-right text-left">Name</label>
-                <div class="col-lg-4 col-md-6">
-                  <input type="text" name="name" class="form-control">
-                </div>
-              </div>
-              <div class="form-group row align-items-center">
-                <label class="col-md-4 text-md-right text-left">Email</label>
-                <div class="col-lg-4 col-md-6">
-                  <input type="email" name="email" class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-md-4 text-md-right text-left mt-2">Address</label>
-                <div class="col-lg-4 col-md-6">
-                  <textarea class="form-control" name="address"></textarea>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-md-4 text-md-right text-left mt-2">Role</label>
-                <div class="col-lg-4 col-md-6">
-                  <div class="selectgroup w-100">
-                    <label class="selectgroup-item">
-                      <input type="radio" name="value" value="developer" class="selectgroup-input">
-                      <span class="selectgroup-button">Developer</span>
-                    </label>
-                    <label class="selectgroup-item">
-                      <input type="radio" name="value" value="ceo" class="selectgroup-input">
-                      <span class="selectgroup-button">CEO</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-md-4"></div>
-                <div class="col-lg-4 col-md-6">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" name="agree" class="custom-control-input" id="agree">
-                    <label class="custom-control-label" for="agree">I agree with the terms and conditions</label>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-md-4"></div>
-                <div class="col-lg-4 col-md-6 text-right">
-                  <a href="#" class="btn btn-icon icon-right btn-primary">Next <i class="fas fa-arrow-right"></i></a>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer bg-whitesmoke br">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+      </div>
+      <div class="modal-footer br">
+        <button type="button" wire:click="store" class="btn btn-primary">Simpan</button>
       </div>
     </div>
   </div>

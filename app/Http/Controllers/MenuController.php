@@ -19,4 +19,10 @@ class MenuController extends Controller
         $this->user = Auth::user();
         return view('pages.beasiswa', ['user'=>$this->user]);
     }
+
+    public function kriteria()
+    {
+        $this->user = Auth::user();
+        return view('pages.kriteria', ['user'=>$this->user]);
+    }
 }

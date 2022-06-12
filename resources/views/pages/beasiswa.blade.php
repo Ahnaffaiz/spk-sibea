@@ -1,5 +1,6 @@
 @extends('layouts.backend')
 @section('title', 'Beasiswa')
+@section('beasiswa-active', 'active')
 @section('content')
 <div class="main-content">
     @livewire('beasiswa.index', ['user' => $user], key($user->id))    

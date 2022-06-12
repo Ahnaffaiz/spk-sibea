@@ -7,7 +7,8 @@
         <a href="">SS</a>
       </div>
       <ul class="sidebar-menu">
-          <li class="active"><a class="nav-link" href="{{route('admin.beasiswa')}}"><i class="far fa-square"></i> <span>Beasiswa</span></a></li>
+          <li class="@yield('beasiswa-active')"><a class="nav-link" href="{{route('admin.beasiswa')}}"><i class="fas fa-graduation-cap"></i> <span>Beasiswa</span></a></li>
+          <li class="@yield('kriteria-active')"><a class="nav-link" href="{{route('admin.kriteria')}}"><i class="fas fa-star"></i> <span>Kriteria</span></a></li>
           <li class="nav-item dropdown">
             <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Scoring</span></a>
             <ul class="dropdown-menu">
@@ -15,13 +16,7 @@
               <li><a class="nav-link" href="index.html">PROMETHEE II</a></li>
             </ul>
           </li>
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Kriteria</span></a>
-            <ul class="dropdown-menu">
-              <li><a class="nav-link" href="index-0.html">Daftar Kriteria</a></li>
-              <li><a class="nav-link" href="index.html">Bobot</a></li>
-            </ul>
-          </li>
+          
           
         </ul>
 

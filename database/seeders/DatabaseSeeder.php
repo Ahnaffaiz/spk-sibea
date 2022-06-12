@@ -13,8 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        RefKriteriasSeeder::class;
-        RefNilaiKriteriasSeeder::class;
+        $this->call(RefKriteriasSeeder::class);
+        $this->call(RefNilaiKriteriasSeeder::class);
     }
 }

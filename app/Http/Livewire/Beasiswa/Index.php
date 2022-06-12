@@ -21,12 +21,15 @@ class Index extends Component
     public $user;
 
     protected $listeners = [
-        'beasiswaStore'
+        'beasiswaStore',
+        'beasiswaDeleted'
     ];
 
     public function render()
     {
-        return view('livewire.beasiswa.index');
+        return view('livewire.beasiswa.index',[
+            'beasiswas' => Beasiswa::where('nama', 'like', '%'.$this->search.'%')->orderBy('created_at', 'DESC')->paginate(5),
+        ]);
     }
 
     public function beasiswaStore()
@@ -34,8 +37,8 @@ class Index extends Component
         $this->alert('success', 'Berhasil menambahkan beasiswa');
     }
 
-    public function addBeasiswa()
+    public function beasiswaDeleted()
     {
-        $this->dispatchBrowserEvent('showCreateModalBeasiswa');
+        $this->alert('success', 'Berhasil menghapus beasiswa');
     }
 }
