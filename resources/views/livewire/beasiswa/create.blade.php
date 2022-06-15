@@ -20,36 +20,36 @@
             <div class="row">
               <div class="col">
                 <div class="form-group">
-                  <label for="bobot.sr1">Status Rumah</label>
-                  <input type="number" name="bobot.sr1" wire:model="bobot.sr1" class="form-control @error('bobot.sr1') is-invalid @enderror">
-                  @error('bobot.sr1')
+                  <label for="bobot.skr">Status Rumah</label>
+                  <input type="number" name="bobot.skr" wire:model="bobot.skr" class="form-control @error('bobot.skr') is-invalid @enderror">
+                  @error('bobot.skr')
                     <span class="text-danger error"><small>{{ $message }}</small></span>
                   @enderror
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label for="bobot.t01">Tanggungan</label>
-                  <input type="number" name="bobot.t01" wire:model="bobot.t01" class="form-control @error('bobot.t01') is-invalid @enderror">
-                  @error('bobot.t01')
+                  <label for="bobot.sjt">Tanggungan</label>
+                  <input type="number" name="bobot.sjt" wire:model="bobot.sjt" class="form-control @error('bobot.sjt') is-invalid @enderror">
+                  @error('bobot.sjt')
                     <span class="text-danger error"><small>{{ $message }}</small></span>
                   @enderror
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label for="bobot.p01">Penghasilan</label>
-                  <input type="number" name="bobot.p01" wire:model="bobot.p01" class="form-control @error('bobot.p01') is-invalid @enderror">
-                  @error('bobot.p01')
+                  <label for="bobot.sho">Penghasilan</label>
+                  <input type="number" name="bobot.sho" wire:model="bobot.sho" class="form-control @error('bobot.sho') is-invalid @enderror">
+                  @error('bobot.sho')
                     <span class="text-danger error"><small>{{ $message }}</small></span>
                   @enderror
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label for="bobot.sj1">Skor Jiwa</label>
-                  <input type="number" name="bobot.sj1" wire:model="bobot.sj1" class="form-control @error('bobot.sj1') is-invalid @enderror">
-                  @error('bobot.sj1')
+                  <label for="bobot.skj">Skor Jiwa</label>
+                  <input type="number" name="bobot.skj" wire:model="bobot.skj" class="form-control @error('bobot.skj') is-invalid @enderror">
+                  @error('bobot.skj')
                     <span class="text-danger error"><small>{{ $message }}</small></span>
                   @enderror
                 </div>
@@ -85,9 +85,9 @@
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label for="bobot.pa1">Penghasilan Ayah</label>
-                  <input type="number" name="bobot.pa1" wire:model="bobot.pa1" class="form-control @error('bobot.pa1') is-invalid @enderror">
-                  @error('bobot.pa1')
+                  <label for="bobot.sha">Penghasilan Ayah</label>
+                  <input type="number" name="bobot.sha" wire:model="bobot.sha" class="form-control @error('bobot.sha') is-invalid @enderror">
+                  @error('bobot.sha')
                     <span class="text-danger error"><small>{{ $message }}</small></span>
                   @enderror
                 </div>
@@ -114,7 +114,7 @@
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label for="sbobot.ki">Pekerjaan Ibu</label>
+                  <label for="bobot.ski">Pekerjaan Ibu</label>
                   <input type="number" name="bobot.ski" wire:model="bobot.ski" class="form-control @error('bobot.ski') is-invalid @enderror">
                   @error('bobot.ski')
                     <span class="text-danger error"><small>{{ $message }}</small></span>
@@ -123,9 +123,9 @@
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label for="bobot.pi1">Penghasilan Ibu</label>
-                  <input type="number" name="bobot.pi1" wire:model="bobot.pi1" class="form-control @error('bobot.pi1') is-invalid @enderror">
-                  @error('bobot.pi1')
+                  <label for="bobot.shi">Penghasilan Ibu</label>
+                  <input type="number" name="bobot.shi" wire:model="bobot.shi" class="form-control @error('bobot.shi') is-invalid @enderror">
+                  @error('bobot.shi')
                     <span class="text-danger error"><small>{{ $message }}</small></span>
                   @enderror
                 </div>

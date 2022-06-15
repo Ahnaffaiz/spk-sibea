@@ -23,7 +23,8 @@
                       <tr>
                           <th>No</th>
                           <th>Kriteria</th>
-                          <th>Nama</th>
+                          <th>Awal</th>
+                          <th>Akhir</th>
                           <th>Nilai</th>
                           <th>Aksi</th>
                       </tr>
@@ -32,8 +33,9 @@
                       @foreach ($nilaiKriterias as $nilai)
                       <tr>
                           <td>{{ ($nilaiKriterias->currentpage() - 1) * $nilaiKriterias->perpage() + $loop->index + 1 }}</td>
-                          <td>{{$nilai->getKriteria->nama}}</td>
-                          <td>{{$nilai->nama}}</td>
+                          <td>{{ucWords($nilai->getKriteria->nama)}}</td>
+                          <td>{{ucWords($nilai->nama_awal)}}</td>
+                          <td>{{ucWOrds($nilai->nama_akhir)}}</td>
                           <td>{{$nilai->nilai}}</td>
                           <td>
                             <button class="btn btn-primary btn-action" wire:click="$emit('show', {{$nilai->id}})">

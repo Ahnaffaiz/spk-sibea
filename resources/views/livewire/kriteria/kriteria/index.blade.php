@@ -26,7 +26,7 @@
                       @foreach ($kriterias as $kriteria)
                       <tr>
                           <td>{{ ($kriterias->currentpage() - 1) * $kriterias->perpage() + $loop->index + 1 }}</td>
-                          <td>{{$kriteria->nama}}</td>
+                          <td>{{ucWords($kriteria->nama)}}</td>
                           @endforeach
                       </tbody>
               </table>

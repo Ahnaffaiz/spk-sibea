@@ -4,11 +4,12 @@
         <a href="">Skripsi Sibea</a>
       </div>
       <div class="sidebar-brand sidebar-brand-sm">
-        <a href="">SS</a>
+        <a href="">SF</a>
       </div>
       <ul class="sidebar-menu">
           <li class="@yield('beasiswa-active')"><a class="nav-link" href="{{route('admin.beasiswa')}}"><i class="fas fa-graduation-cap"></i> <span>Beasiswa</span></a></li>
           <li class="@yield('kriteria-active')"><a class="nav-link" href="{{route('admin.kriteria')}}"><i class="fas fa-star"></i> <span>Kriteria</span></a></li>
+          <li class="@yield('pendaftar-active')"><a class="nav-link" href="{{route('admin.pendaftar')}}"><i class="fas fa-users"></i> <span>Pendaftar</span></a></li>
           <li class="nav-item dropdown">
             <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Scoring</span></a>
             <ul class="dropdown-menu">

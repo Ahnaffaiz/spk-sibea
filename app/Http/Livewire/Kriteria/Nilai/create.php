@@ -11,7 +11,7 @@ class Create extends Component
 {
     use LivewireAlert;
 
-    public $nama, $nilai, $ref_kriterias_id, $ref_nilai_kriterias_id;
+    public $nama_awal, $nama_akhir, $nilai, $ref_kriterias_id, $ref_nilai_kriterias_id;
 
     protected $listeners = [
         'delete',
@@ -21,7 +21,7 @@ class Create extends Component
     ];
 
     protected $rules = [
-        'nama' => 'required',
+        'nama_awal' => 'required',
         'nilai' => 'required|min:0',
         'ref_kriterias_id' => 'required',  
     ];
@@ -51,7 +51,8 @@ class Create extends Component
         if($this->ref_nilai_kriterias_id == null) {
             $nilaiKriteria = RefNilaiKriteria::create([
                 'ref_kriterias_id' => $this->ref_kriterias_id,
-                'nama' => $this->nama,
+                'nama_awal' => strtolower($this->nama_awal),
+                'nama_akhir' => strtolower($this->nama_akhir),
                 'nilai' => $this->nilai,
             ]);
         } else {
@@ -60,7 +61,8 @@ class Create extends Component
                 ],
                 [
                     'ref_kriterias_id' => $this->ref_kriterias_id,
-                    'nama' => $this->nama,
+                    'nama_awal' => strtolower($this->nama_awal),
+                    'nama_akhir' => strtolower($this->nama_akhir),
                     'nilai' => $this->nilai,
                 ]
             );
@@ -103,7 +105,8 @@ class Create extends Component
         $nilaiKriteria = RefNilaiKriteria::find($id);
         $this->ref_nilai_kriterias_id = $nilaiKriteria->id;
         $this->ref_kriterias_id = $nilaiKriteria->ref_kriterias_id;
-        $this->nama = $nilaiKriteria->nama;
+        $this->nama_awal = $nilaiKriteria->nama_awal;
+        $this->nama_akhir = $nilaiKriteria->nama_akhir;
         $this->nilai = $nilaiKriteria->nilai;
         
         $this->dispatchBrowserEvent('showCreateModalNilaiKriteria');
@@ -111,7 +114,8 @@ class Create extends Component
 
     public function resetInput()
     {
-        $this->nama=null;
+        $this->nama_awal=null;
+        $this->nama_akhir=null;
         $this->nilai=null;
         $this->ref_nilai_kriterias_id=null;
         $this->ref_kriterias_id=null;

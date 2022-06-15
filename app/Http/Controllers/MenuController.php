@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Beasiswa;
+use App\Models\RefNilaiKriteria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,5 +26,25 @@ class MenuController extends Controller
     {
         $this->user = Auth::user();
         return view('pages.kriteria', ['user'=>$this->user]);
+    }
+
+    public function pendaftar()
+    {
+        $this->user = Auth::user();
+        return view('pages.pendaftar', ['user'=>$this->user]);
+    }
+
+    public function pendaftarImport($id)
+    {
+        $this->user = Auth::user();
+        $beasiswa = Beasiswa::find($id);
+        return view('pages.pendaftar-import', ['user'=>$this->user, 'beasiswa'=>$beasiswa]);
+    }
+
+    public function ahp()
+    {
+        $this->user = Auth::user();
+        $beasiswas = Beasiswa::all();
+        return view('pages.pendaftar-import', ['user'=>$this->user, 'beasiswa'=>$beasiswas]);
     }
 }

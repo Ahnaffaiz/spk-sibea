@@ -30,10 +30,10 @@ class Index extends Component
         return view('livewire.kriteria.nilai.index',[
             'nilaiKriterias' => RefNilaiKriteria::
             when($this->search, function($query, $search){
-                $idList = RefKriteria::where('nama', 'like', '%'.$search.'%')->get()->pluck('id')->toArray();
+                $idList = RefKriteria::where('nama', 'like', '%'.strtolower($search).'%')->get()->pluck('id')->toArray();
                 return $query->whereIn('ref_kriterias_id', $idList);
-            })->orWhere('nama', 'like', '%'.$this->search.'%')
-            ->orderBy('nama', 'ASC')->paginate(10)
+            })->orWhere('nama_awal', 'like', '%'.strtolower($this->search).'%')->orWhere('nama_akhir', 'like', '%'.strtolower($this->search).'%')
+            ->orderBy('created_at', 'ASC')->paginate(10)
         ]);
     }
 

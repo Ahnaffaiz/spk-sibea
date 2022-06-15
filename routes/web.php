@@ -23,6 +23,8 @@ Route::name('admin.')->middleware('is_admin')->prefix('/admin')->group(function 
     Route::controller(MenuController::class)->group(function(){
         Route::get('/beasiswa','beasiswa')->name('beasiswa');
         Route::get('/kriteria','kriteria')->name('kriteria');
+        Route::get('/pendaftar','pendaftar')->name('pendaftar');
+        Route::get('/pendaftar/{id}/import','pendaftarImport')->name('pendaftar.import');
     });
 });
 Auth::routes();

@@ -26,16 +26,16 @@ class Create extends Component
         'nama' => 'required',
         'bobot.sta' => 'required',
         'bobot.sti' => 'required',
-        'bobot.sr1' => 'required',
+        'bobot.skr' => 'required',
         'bobot.spa' => 'required',
         'bobot.spi' => 'required',
         'bobot.ska' => 'required',
         'bobot.ski' => 'required',
-        'bobot.t01' => 'required',
-        'bobot.pa1' => 'required',
-        'bobot.pi1' => 'required',
-        'bobot.p01' => 'required',
-        'bobot.sj1' => 'required',
+        'bobot.sjt' => 'required',
+        'bobot.sha' => 'required',
+        'bobot.shi' => 'required',
+        'bobot.sho' => 'required',
+        'bobot.skj' => 'required',
     ];
 
     public function updated($property)
@@ -72,20 +72,20 @@ class Create extends Component
 
         if($this->beasiswa_id == null) {
             $beasiswa = Beasiswa::create([
-                'nama' => $this->nama
+                'nama' => strtolower($this->nama)
             ]);
         } else {
             $beasiswa = Beasiswa::updateOrCreate([
                     'id' => $this->beasiswa_id,
                 ],
                 [
-                    'nama' => $this->nama,
+                    'nama' => strtolower($this->nama),
                 ]
             );
         }
 
         foreach ($this->bobot as $key => $value) {
-            $kriteria = RefKriteria::where('kode', strtoupper($key))->first();
+            $kriteria = RefKriteria::where('kode', strtolower($key))->first();
             BobotKriteria::updateOrCreate([
                     'beasiswas_id' => $beasiswa->id,
                     'ref_kriterias_id' => $kriteria->id,

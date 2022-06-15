@@ -11,7 +11,6 @@
         <div class="modal-body">
             <div class="form-group">
                 <label for="kriterias_id">Kriteria</label>
-                <label>Select</label>
                 <select class="form-control" wire:model="ref_kriterias_id">
                     <option disabled selected value>Pilih</option>
                     @foreach ($kriterias as $kriteria)
@@ -22,12 +21,25 @@
                 <span class="text-danger error"><small>{{ $message }}</small></span>
                 @enderror
             </div>
-            <div class="form-group">
-                <label for="nama">Nama</label>
-                <input type="text" name="nama" wire:model="nama" placeholder="masukkan nama kriteria" class="form-control @error('nama') is-invalid @enderror">
-                @error('nama')
-                <span class="text-danger error"><small>{{ $message }}</small></span>
-                @enderror
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                    <label for="nama_awal">Nama Awal</label>
+                    <input type="text" name="nama_awal" wire:model="nama_awal" placeholder="masukkan nama awal kriteria" class="form-control @error('nama_awal') is-invalid @enderror">
+                    @error('nama_awal')
+                    <span class="text-danger error"><small>{{ $message }}</small></span>
+                    @enderror
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                    <label for="nama_akhir">Nama Akhir</label>
+                    <input type="text" name="nama_akhir" wire:model="nama_akhir" placeholder="masukkan nama akhir kriteria" class="form-control @error('nama_akhir') is-invalid @enderror">
+                    @error('nama_akhir')
+                    <span class="text-danger error"><small>{{ $message }}</small></span>
+                    @enderror
+                </div>
+              </div>
             </div>
             <div class="form-group">
                 <label for="nilai">Nilai</label>

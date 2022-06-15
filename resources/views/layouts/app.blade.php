@@ -19,6 +19,7 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{asset('backend/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('backend/assets/css/components.css')}}">
+    <link rel="icon" href="{{asset('backend/assets/img/logo/logo-sibea.png')}}">
 </head>
 <body>
     <div id="app">

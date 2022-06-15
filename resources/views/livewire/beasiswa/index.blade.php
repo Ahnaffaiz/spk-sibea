@@ -42,7 +42,7 @@
                                     @foreach ($beasiswas as $beasiswa)
                                     <tr>
                                         <td>{{ ($beasiswas->currentpage() - 1) * $beasiswas->perpage() + $loop->index + 1 }}</td>
-                                        <td>{{$beasiswa->nama}}</td>
+                                        <td>{{ucWords($beasiswa->nama)}}</td>
                                         <td>
                                             <button class="btn btn-primary btn-action" wire:click="$emit('show', {{$beasiswa->id}})">
                                                     <i class="fas fa-pencil-alt"></i>

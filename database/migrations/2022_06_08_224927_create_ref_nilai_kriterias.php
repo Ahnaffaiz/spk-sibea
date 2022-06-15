@@ -16,7 +16,8 @@ class CreateRefNilaiKriterias extends Migration
         Schema::create('ref_nilai_kriterias', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('ref_kriterias_id');
-            $table->string('nama');
+            $table->string('nama_awal');
+            $table->string('nama_akhir')->nullable();
             $table->float('nilai', 8, 2);
 
             $table->foreign('ref_kriterias_id')->references('id')->on('ref_kriterias')->onDelete('restrict')->onUpdate('cascade');
