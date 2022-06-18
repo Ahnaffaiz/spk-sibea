@@ -31,7 +31,7 @@ class PendaftarImport implements ToModel, WithHeadingRow
                 'beasiswas_id' => $this->beasiswas_id,
                 'nama' => strtolower($row['nama']),
             ],[
-                'sho' => $this->nilai->where('getKriteria.kode', 'sho')->where('nama_awal', '<=' ,strtolower($row['sho']))->where('nama_akhir', '>=' ,strtolower($row['sho']))->first()->id ?? null,
+                'sho' => $this->nilai->where('getKriteria.kode', 'sho')->where('nama_awal', '<=' ,(int) $row['sho'])->where('nama_akhir', '>=' ,(int) $row['sho'])->first()->id ?? null,
                 'sta' => $this->nilai->where('getKriteria.kode', 'sta')->where('nama_awal', strtolower($row['sta']))->first()->id ?? null,
                 'sti' => $this->nilai->where('getKriteria.kode', 'sti')->where('nama_awal', strtolower($row['sti']))->first()->id ?? null,
                 'skr' => $this->nilai->where('getKriteria.kode', 'skr')->where('nama_awal', strtolower($row['skr']))->first()->id ?? null,
@@ -39,8 +39,8 @@ class PendaftarImport implements ToModel, WithHeadingRow
                 'spi' => $this->nilai->where('getKriteria.kode', 'spi')->where('nama_awal', strtolower($row['spi']))->first()->id ?? null,
                 'ska' => $this->nilai->where('getKriteria.kode', 'ska')->where('nama_awal', strtolower($row['ska']))->first()->id ?? null,
                 'ski' => $this->nilai->where('getKriteria.kode', 'ski')->where('nama_awal', strtolower($row['ski']))->first()->id ?? null,
-                'sha' => $this->nilai->where('getKriteria.kode', 'sha')->where('nama_awal', '<=' ,strtolower($row['sha']))->where('nama_akhir', '>=' ,strtolower($row['sha']))->first()->id ?? null,
-                'shi' => $this->nilai->where('getKriteria.kode', 'shi')->where('nama_awal', '<=' ,strtolower($row['shi']))->where('nama_akhir', '>=' ,strtolower($row['shi']))->first()->id ?? null,
+                'sha' => $this->nilai->where('getKriteria.kode', 'sha')->where('nama_awal', '<=' ,(int) $row['sha'])->where('nama_akhir', '>=' ,(int) $row['sha'])->first()->id ?? null,
+                'shi' => $this->nilai->where('getKriteria.kode', 'shi')->where('nama_awal', '<=' ,(int) $row['shi'])->where('nama_akhir', '>=' ,(int) $row['shi'])->first()->id ?? null,
                 'sjt' => $this->nilai->where('getKriteria.kode', 'sjt')->where('nama_awal', strtolower($row['sjt']))->first()->id ?? null,
                 'skj' => $this->nilai->where('getKriteria.kode', 'skj')->where('nama_awal', strtolower($row['skj']))->first()->id ?? null,
             ]
@@ -50,7 +50,7 @@ class PendaftarImport implements ToModel, WithHeadingRow
             return new Pendaftar([
                 'beasiswas_id' => $this->beasiswas_id,
                 'nama' => $row['nama'],
-                'sho' => $this->nilai->where('getKriteria.kode', 'sho')->where('nama_awal', '<=' ,strtolower($row['sho']))->where('nama_akhir', '>=' ,strtolower($row['sho']))->first()->id ?? null,
+                'sho' => $this->nilai->where('getKriteria.kode', 'sho')->where('nama_awal', '<=' ,(int) $row['sho'])->where('nama_akhir', '>=' ,(int) $row['sho'])->first()->id ?? null,
                 'sta' => $this->nilai->where('getKriteria.kode', 'sta')->where('nama_awal', strtolower($row['sta']))->first()->id ?? null,
                 'sti' => $this->nilai->where('getKriteria.kode', 'sti')->where('nama_awal', strtolower($row['sti']))->first()->id ?? null,
                 'skr' => $this->nilai->where('getKriteria.kode', 'skr')->where('nama_awal', strtolower($row['skr']))->first()->id ?? null,
@@ -58,8 +58,8 @@ class PendaftarImport implements ToModel, WithHeadingRow
                 'spi' => $this->nilai->where('getKriteria.kode', 'spi')->where('nama_awal', strtolower($row['spi']))->first()->id ?? null,
                 'ska' => $this->nilai->where('getKriteria.kode', 'ska')->where('nama_awal', strtolower($row['ska']))->first()->id ?? null,
                 'ski' => $this->nilai->where('getKriteria.kode', 'ski')->where('nama_awal', strtolower($row['ski']))->first()->id ?? null,
-                'sha' => $this->nilai->where('getKriteria.kode', 'sha')->where('nama_awal', '<=' ,strtolower($row['sha']))->where('nama_akhir', '>=' ,strtolower($row['sha']))->first()->id ?? null,
-                'shi' => $this->nilai->where('getKriteria.kode', 'shi')->where('nama_awal', '<=' ,strtolower($row['shi']))->where('nama_akhir', '>=' ,strtolower($row['shi']))->first()->id ?? null,
+                'sha' => $this->nilai->where('getKriteria.kode', 'sha')->where('nama_awal', '<=' ,(int) $row['sha'])->where('nama_akhir', '>=' ,(int) $row['sha'])->first()->id ?? null,
+                'shi' => $this->nilai->where('getKriteria.kode', 'shi')->where('nama_awal', '<=' ,(int) $row['shi'])->where('nama_akhir', '>=' ,(int) $row['shi'])->first()->id ?? null,
                 'sjt' => $this->nilai->where('getKriteria.kode', 'sjt')->where('nama_awal', strtolower($row['sjt']))->first()->id ?? null,
                 'skj' => $this->nilai->where('getKriteria.kode', 'skj')->where('nama_awal', strtolower($row['skj']))->first()->id ?? null,
             ]);

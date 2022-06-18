@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title', 'Import Pendaftar')
+@section('title', 'Import Pendaftar ' . ucWords($beasiswa->nama))
 @section('pendaftar-active', 'active')
 @section('content')
 <div class="main-content">

@@ -55,7 +55,7 @@ class RefNilaiKriteriasSeeder extends Seeder
 
             ['ski','tidak bekerja',NULL,'10'],
             ['ski','Lain-lain',NULL,'8.3'],
-            ['ski','Petani',NULL,'6.64'],
+            ['ski','Petani/Nelayan',NULL,'6.64'],
             ['ski','Wirausaha',NULL,'4.98'],
             ['ski','Pegawai Swasta bukan Guru/Dosen',NULL,'3.32'],        //ini di pecah dari Pegawai Swasta
             ['ski','Guru/Dosen Swasta',NULL,'3.32'],                      //ini di pecah dari Pegawai Swasta

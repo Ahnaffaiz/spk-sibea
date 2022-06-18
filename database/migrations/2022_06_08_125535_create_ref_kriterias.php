@@ -17,6 +17,7 @@ class CreateRefKriterias extends Migration
             $table->id();
             $table->string('kode');
             $table->string('nama');
+            $table->boolean('is_benefit');
             $table->timestamps();
         });
     }

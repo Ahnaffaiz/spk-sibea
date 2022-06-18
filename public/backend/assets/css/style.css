@@ -1141,11 +1141,11 @@ select.form-control:not([size]):not([multiple]) {
   border-bottom: none;
   background-color: rgba(0, 0, 0, 0.04);
   color: #666;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .table.table-md th, .table.table-md td {
-  padding: 10px 15px;
+  padding: 5px 10px;
 }
 .table.table-bordered td, .table.table-bordered th {
   border-color: #f6f6f6;

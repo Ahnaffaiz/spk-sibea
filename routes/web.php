@@ -25,6 +25,8 @@ Route::name('admin.')->middleware('is_admin')->prefix('/admin')->group(function 
         Route::get('/kriteria','kriteria')->name('kriteria');
         Route::get('/pendaftar','pendaftar')->name('pendaftar');
         Route::get('/pendaftar/{id}/import','pendaftarImport')->name('pendaftar.import');
+        Route::get('/skoring','skoring')->name('skoring');
+        Route::get('/skoring/promethee/{id}','promethee')->name('skoring.promethee');
     });
 });
 Auth::routes();

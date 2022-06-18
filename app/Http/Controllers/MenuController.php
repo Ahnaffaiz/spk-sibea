@@ -41,10 +41,16 @@ class MenuController extends Controller
         return view('pages.pendaftar-import', ['user'=>$this->user, 'beasiswa'=>$beasiswa]);
     }
 
-    public function ahp()
+    public function skoring()
     {
         $this->user = Auth::user();
-        $beasiswas = Beasiswa::all();
-        return view('pages.pendaftar-import', ['user'=>$this->user, 'beasiswa'=>$beasiswas]);
+        return view('pages.skoring', ['user'=>$this->user]);
+    }
+
+    public function promethee($id)
+    {
+        $this->user = Auth::user();
+        $beasiswa = Beasiswa::find($id);
+        return view('pages.skoring.promethee', ['user'=>$this->user, 'beasiswa'=>$beasiswa]);
     }
 }

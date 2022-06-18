@@ -22,11 +22,14 @@ class Import extends Component
 
     public $pendaftars_id;
 
+    public $loading=false;
+
     public $search;
 
     protected $listeners = [
         'delete',
         'deleteAll',
+        'import',
     ];
 
     protected $queryString = ['search'];
@@ -51,8 +54,24 @@ class Import extends Component
         $this->validateOnly($property);
     }
 
+    public function confirmImport()
+    {
+        $this->alert('question', 'Apakah anda yakin mengimport data ini ?', [
+            'toast' => false,
+            'position' => 'center',
+            'showConfirmButton' => true,
+            'confirmButtonText' => 'Yes',
+            'showCancelButton' => true,
+            'cancelButtonText' => 'cancel',
+            'icon' => 'warning',
+            'onConfirmed' => 'import',
+            'timer' => null,
+        ]);
+    }
+
     public function import()
     {
+        $this->loading = true;
         $this->validate($this->rules);
 
         $update_status = false;
@@ -64,6 +83,7 @@ class Import extends Component
         
         $this->resetField();
         $this->alert('success', 'Berhasil import data pendaftar');
+        $this->loading = false;
     }
 
     public function confirmDelete($id)

@@ -13,7 +13,7 @@
             <div class="col-lg-8 col-md-6 col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Import Pendaftar</h4>
+                        <h4>Import Pendaftar {{ucWords($beasiswa->nama)}}</h4>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -40,7 +40,7 @@
                                 @enderror
                             </div>
                             <div class="col-3">
-                                <button class="btn btn-primary" wire:click="import" wire:loading.class="disabled btn-progress" wire:target="import">Simpan</button>
+                                <button class="btn btn-primary  {{ $loading ? 'disabled btn-progress' : ''  }} " wire:click="confirmImport">Simpan</button>
                             </div>
                         </div>
                     </div>

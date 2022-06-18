@@ -3,7 +3,7 @@
       <div class="section-header">
           <h1>@yield('title')</h1>
           <div class="section-header-breadcrumb">
-              <div class="breadcrumb-item active">Pendaftar</div>
+              <div class="breadcrumb-item active">Skoring</div>
           </div>
       </div>
   
@@ -23,6 +23,9 @@
                               </div>
                             </form>
                         </div>
+                        <button class="btn btn-primary text-end m-2" wire:click="$emit('add')">
+                          <i class="fas fa-plus"></i> Beasiswa
+                        </button>
                     </div>
                     <div class="card-body">
                         @if ($beasiswas->count() > 0)
@@ -43,8 +46,9 @@
                                           <td>{{ucWords($beasiswa->nama)}}</td>
                                           <td>{{$beasiswa->getPendaftar->count()}}</td>
                                           <td>
-                                                <a class="btn btn-primary btn-action" href="{{route('admin.pendaftar.import', $beasiswa->id)}}">
-                                                    <i class="fas fa-list"></i>
+                                                <a class="btn btn-danger btn-action" href="{{route('admin.skoring.promethee', $beasiswa->id)}}">
+                                                    <i class="fas fa-fire"></i>
+                                                    PROMETHEE
                                                 </a>
                                               </td>
                                           </tr>
