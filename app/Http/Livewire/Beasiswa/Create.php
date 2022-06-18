@@ -12,7 +12,7 @@ class Create extends Component
 {
     use LivewireAlert;
 
-    public $beasiswa_id, $nama, $bobot, $total;
+    public $beasiswa_id, $nama, $bobot, $total, $kuota;
 
 
     protected $listeners = [
@@ -24,6 +24,7 @@ class Create extends Component
 
     protected $rules = [
         'nama' => 'required',
+        'kuota' => 'required',
         'bobot.sta' => 'required',
         'bobot.sti' => 'required',
         'bobot.skr' => 'required',
@@ -72,7 +73,8 @@ class Create extends Component
 
         if($this->beasiswa_id == null) {
             $beasiswa = Beasiswa::create([
-                'nama' => strtolower($this->nama)
+                'nama' => strtolower($this->nama),
+                'kuota' => $this->kuota
             ]);
         } else {
             $beasiswa = Beasiswa::updateOrCreate([
@@ -80,6 +82,7 @@ class Create extends Component
                 ],
                 [
                     'nama' => strtolower($this->nama),
+                    'kuota' => $this->kuota,
                 ]
             );
         }
@@ -135,6 +138,7 @@ class Create extends Component
         $beasiswa = Beasiswa::find($id);
         $this->beasiswa_id = $beasiswa->id;
         $this->nama = $beasiswa->nama;
+        $this->kuota = $beasiswa->kuota;
         foreach ($beasiswa->getBobot as $bobot) {
             $this->bobot[strtolower($bobot->getKriteria->kode)] = $bobot->bobot;
             $this->total += $bobot->bobot;
@@ -146,6 +150,7 @@ class Create extends Component
     {
         $this->nama=null;
         $this->bobot=null;
+        $this->kuota=null;
         $this->total=null;
         $this->beasiswa_id=null;
     }

@@ -30,10 +30,10 @@ class CreatePendaftars extends Migration
             $table->unsignedBigInteger('sjt')->nullable();
             $table->unsignedBigInteger('skj')->nullable();
             $table->boolean('is_accepted_ahp')->nullable();
-            $table->boolean('is_accepted_promethe')->nullable();
+            $table->boolean('is_accepted_promethee')->nullable();
             $table->boolean('is_accepted_actual')->nullable();
             $table->integer('ranking_ahp')->nullable();
-            $table->integer('ranking_promethe')->nullable();
+            $table->integer('ranking_promethee')->nullable();
             $table->integer('ranking_actual')->nullable();
 
             $table->foreign('beasiswas_id')->references('id')->on('beasiswas')->onDelete('cascade')->onUpdate('cascade');

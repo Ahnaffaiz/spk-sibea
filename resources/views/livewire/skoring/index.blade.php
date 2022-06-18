@@ -46,6 +46,10 @@
                                           <td>{{ucWords($beasiswa->nama)}}</td>
                                           <td>{{$beasiswa->getPendaftar->count()}}</td>
                                           <td>
+                                                <a class="btn btn-warning btn-action" href="{{route('admin.skoring.ahp', $beasiswa->id)}}">
+                                                    <i class="fas fa-fire"></i>
+                                                    AHP
+                                                </a>
                                                 <a class="btn btn-danger btn-action" href="{{route('admin.skoring.promethee', $beasiswa->id)}}">
                                                     <i class="fas fa-fire"></i>
                                                     PROMETHEE

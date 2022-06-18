@@ -335,6 +335,15 @@ class Skoring extends Component
                 ->update([
                     'ranking' => $counter,
                 ]);
+            $is_accepted = 0;
+            if($counter <= $this->beasiswa->kuota){
+                $is_accepted = 1;
+            }
+            Pendaftar::where('id', $item->pendaftars_id)
+                ->update([
+                    'is_accepted_promethee' => $is_accepted,
+                    'ranking_promethee' => $counter
+                ]);
             $counter++;
         }
 

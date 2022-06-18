@@ -16,6 +16,13 @@
               <span class="text-danger error"><small>{{ $message }}</small></span>
             @enderror
           </div>
+          <div class="form-group">
+            <label for="nama">Kuota</label>
+            <input type="number" name="kuota" wire:model="kuota" placeholder="masukkan kuota beasiswa" class="form-control @error('kuota') is-invalid @enderror">
+            @error('kuota')
+              <span class="text-danger error"><small>{{ $message }}</small></span>
+            @enderror
+          </div>
           <div class="bobot">
             <div class="row">
               <div class="col">

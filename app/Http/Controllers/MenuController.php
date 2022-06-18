@@ -53,4 +53,11 @@ class MenuController extends Controller
         $beasiswa = Beasiswa::find($id);
         return view('pages.skoring.promethee', ['user'=>$this->user, 'beasiswa'=>$beasiswa]);
     }
+
+    public function ahp($id)
+    {
+        $this->user = Auth::user();
+        $beasiswa = Beasiswa::find($id);
+        return view('pages.skoring.ahp', ['user'=>$this->user, 'beasiswa'=>$beasiswa]);
+    }
 }

@@ -37,6 +37,7 @@
                     <tr>
                         <th>Ranking</th>
                         <th>Nama</th>
+                        <th class="text-center">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,6 +45,13 @@
                         <tr>
                             <td>{{$item->ranking}}</td>
                             <td>{{$item->getPendaftar->nama}}</td>
+                            <td class="text-center">
+                                @if ($item->getPendaftar->is_accepted_promethee)
+                                    <div class="badge badge-success">diterima</div>
+                                @else
+                                    <div class="badge badge-danger">ditolak</div>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
