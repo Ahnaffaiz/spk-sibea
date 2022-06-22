@@ -54,7 +54,10 @@
                               {{$beasiswas->links()}}
                           </div>
                           @else
-                              <h6 class="text-danger">*Belum ada beasiswa</h6>
+                            <div class="empty-state" data-height="600">
+                                <img class="img-fluid" src="{{asset('backend/assets/img/empty.svg')}}" alt="image" style="height: 500px">
+                                <h2 class="mt-0">Belum ada pendaftar</h2>
+                            </div>
                           @endif
                     </div>
                 </div>
@@ -62,6 +65,5 @@
         </div>
       </div>
     </section>
-    @livewire('beasiswa.create', ['user' => $user], key($user->id))    
 </div>
   

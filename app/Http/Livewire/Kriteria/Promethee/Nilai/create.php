@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Kriteria\Nilai;
+namespace App\Http\Livewire\Kriteria\Promethee\Nilai;
 
 use App\Models\RefKriteria;
 use App\Models\RefNilaiKriteria;
@@ -33,7 +33,7 @@ class Create extends Component
 
     public function render()
     {
-        return view('livewire.kriteria.nilai.create',[
+        return view('livewire.kriteria.promethee.nilai.create',[
             'kriterias' => RefKriteria::orderBy('nama', 'ASC')->get(),
         ]);
     }

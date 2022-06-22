@@ -8,7 +8,12 @@
                         <i class="fas fa-cogs"></i> Generate
                     </button>
                 </div>
-                <div class="card-body">
+                <div class="text-center my-2" wire:loading>
+                  <img src="{{asset('backend/assets/img/loading.svg')}}" alt="" style="height: 200px">
+                  <h4 class="text-primary">Generating....</h4>
+                </div>
+                <div class="card-body" wire:loading.attr="hidden">
+                    @if ($matriks_ranking->count() > 0)
                     <div id="accordion">
                         <div class="accordion">
                           <div class="accordion-header" role="button" data-toggle="collapse" data-target="#panel-body-1" aria-expanded="true">
@@ -46,7 +51,13 @@
                             </div>
                             @include('livewire.skoring.promethee.algoritma.stepsix')
                         </div>
-                      </div>
+                    </div>
+                    @else
+                    <div class="empty-state" data-height="600">
+                      <img class="img-fluid" src="{{asset('backend/assets/img/empty.svg')}}" alt="image" style="height: 500px">
+                      <h2 class="mt-0">Belum ada pendaftar</h2>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

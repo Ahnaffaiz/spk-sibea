@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Kriteria\Nilai;
+namespace App\Http\Livewire\Kriteria\Promethee\Nilai;
 
 use App\Models\RefKriteria;
 use App\Models\RefNilaiKriteria;
@@ -27,7 +27,7 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.kriteria.nilai.index',[
+        return view('livewire.kriteria.promethee.nilai.index',[
             'nilaiKriterias' => RefNilaiKriteria::
             when($this->search, function($query, $search){
                 $idList = RefKriteria::where('nama', 'like', '%'.strtolower($search).'%')->get()->pluck('id')->toArray();

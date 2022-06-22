@@ -53,7 +53,10 @@
                         </table>
                         {{$pendaftars->links()}}
                         @else
-                        <h6 class="text-danger">*Belum ada data pendaftar</h6>    
+                        <div class="empty-state" data-height="600">
+                            <img class="img-fluid" src="{{asset('backend/assets/img/empty.svg')}}" alt="image" style="height: 500px">
+                            <h2 class="mt-0">Belum ada pendaftar</h2>
+                        </div>
                         @endif
                         
                     </div>

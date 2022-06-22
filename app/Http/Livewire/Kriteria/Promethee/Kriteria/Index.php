@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Kriteria\Kriteria;
+namespace App\Http\Livewire\Kriteria\Promethee\Kriteria;
 
 use App\Models\RefKriteria;
 use Livewire\Component;
@@ -19,7 +19,7 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.kriteria.kriteria.index',[
+        return view('livewire.kriteria.promethee.kriteria.index',[
             'kriterias' => RefKriteria::where('nama', 'like', '%'.strtolower($this->search).'%')->orderBy('nama', 'ASC')->paginate(10),
         ]);
     }

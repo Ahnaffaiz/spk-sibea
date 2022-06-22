@@ -16,16 +16,38 @@ class MenuController extends Controller
         $this->middleware('auth');
     }
 
-    public function beasiswa()
+    public function beasiswa(Request $request)
     {
+        $request->session()->forget('beasiswas_id');
+        $request->session()->forget('step');
+
         $this->user = Auth::user();
         return view('pages.beasiswa', ['user'=>$this->user]);
     }
 
-    public function kriteria()
+    public function beasiswaCreate()
     {
         $this->user = Auth::user();
-        return view('pages.kriteria', ['user'=>$this->user]);
+        return view('pages.beasiswa-create', ['user'=>$this->user]);
+    }
+
+    public function beasiswaUpdate($id)
+    {
+        $this->user = Auth::user();
+        $beasiswa = Beasiswa::find($id);
+        return view('pages.beasiswa-create', ['user'=>$this->user, 'beasiswa'=>$beasiswa]);
+    }
+
+    public function kriteriaPromethee()
+    {
+        $this->user = Auth::user();
+        return view('pages.kriteria-promethee', ['user'=>$this->user]);
+    }
+
+    public function kriteriaAhp()
+    {
+        $this->user = Auth::user();
+        return view('pages.kriteria-ahp', ['user'=>$this->user]);
     }
 
     public function pendaftar()

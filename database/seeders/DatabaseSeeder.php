@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RefKriteriasSeeder::class);
         $this->call(RefNilaiKriteriasSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(AhpRandomIndexSeeder::class);
     }
 }

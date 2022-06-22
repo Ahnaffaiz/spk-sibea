@@ -1,9 +1,10 @@
 @extends('layouts.backend')
-@section('title', 'Kriteria')
+@section('title', 'Kriteria Promethee')
 @section('kriteria-active', 'active')
+@section('kriteria-promethee-active', 'active')
 @section('content')
 <div class="main-content">
-    @livewire('kriteria.index', ['user' => $user], key($user->id))    
+    @livewire('kriteria.promethee.index', ['user' => $user], key($user->id))    
 </div>
 @endsection
 

@@ -15,6 +15,11 @@ class Beasiswa extends Model
         return $this->hasMany(BobotKriteria::class, 'beasiswas_id', 'id');
     }
 
+    public function getAhpBobot()
+    {
+        return $this->hasMany(AhpPerbandinganKriteria::class, 'beasiswas_id', 'id');
+    }
+
     public function getPendaftar()
     {
         return $this->hasMany(Pendaftar::class, 'beasiswas_id', 'id');

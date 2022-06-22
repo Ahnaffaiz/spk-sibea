@@ -81,7 +81,11 @@
                             <i class="fas fa-trash"></i> Pendaftar
                         </button>
                     </div>
-                    <div class="card-body">
+                    <div class="text-center my-2" wire:loading>
+                        <img src="{{asset('backend/assets/img/loading.svg')}}" alt="" style="height: 200px">
+                        <h4 class="text-primary">Importing....</h4>
+                    </div>
+                    <div class="card-body" wire:loading.attr="hidden">
                         <div class="table-responsive">
                             @if ($pendaftars->count() > 0)
                             <table class="table table-hover table-bordered">
@@ -135,7 +139,10 @@
                             </table>
                             {{$pendaftars->links()}}
                             @else
-                            <h6 class="text-danger">*Belum ada data pendaftar</h6>    
+                            <div class="empty-state" data-height="600">
+                                <img class="img-fluid" src="{{asset('backend/assets/img/empty.svg')}}" alt="image" style="height: 500px">
+                                <h2 class="mt-0">Belum ada pendaftar</h2>
+                            </div>
                             @endif
                             
                         </div>

@@ -23,9 +23,9 @@
                             </div>
                           </form>
                       </div>
-                      <button class="btn btn-primary text-end m-2" wire:click="$emit('add')">
+                      <a href="{{route('admin.beasiswa-create')}}" class="btn btn-primary text-end m-2">
                         <i class="fas fa-plus"></i> Beasiswa
-                      </button>
+                      </a>
                   </div>
                   <div class="card-body">
                       @if ($beasiswas->count() > 0)
@@ -35,7 +35,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
-                                        <th>Aksi</th>
+                                        <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,11 +43,11 @@
                                     <tr>
                                         <td>{{ ($beasiswas->currentpage() - 1) * $beasiswas->perpage() + $loop->index + 1 }}</td>
                                         <td>{{ucWords($beasiswa->nama)}}</td>
-                                        <td>
-                                            <button class="btn btn-primary btn-action" wire:click="$emit('show', {{$beasiswa->id}})">
+                                        <td class="text-center">
+                                            <a href="{{route('admin.beasiswa-update', $beasiswa->id)}}" class="btn btn-primary btn-action">
                                                     <i class="fas fa-pencil-alt"></i>
-                                                </button>
-                                                <button class="btn btn-danger btn-action" wire:click="$emit('confirmDelete',{{$beasiswa->id}})">
+                                                </a>
+                                                <button class="btn btn-danger btn-action" wire:click="confirmDelete({{$beasiswa->id}})">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </td>
@@ -58,13 +58,15 @@
                             {{$beasiswas->links()}}
                         </div>
                         @else
-                            <h6 class="text-danger">*Belum ada beasiswa</h6>
+                        <div class="empty-state" data-height="600">
+                            <img class="img-fluid" src="{{asset('backend/assets/img/empty.svg')}}" alt="image" style="height: 500px">
+                            <h2 class="mt-0">Belum ada beasiswa</h2>
+                        </div>
                         @endif
                   </div>
               </div>
           </div>
       </div>
     </div>
-  </section>
-  @livewire('beasiswa.create', ['user' => $user], key($user->id))    
+  </section> 
 </div>

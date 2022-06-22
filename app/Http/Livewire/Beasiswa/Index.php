@@ -20,9 +20,11 @@ class Index extends Component
 
     public $user;
 
+    public $beasiswa_id;
+
     protected $listeners = [
         'beasiswaStore',
-        'beasiswaDeleted'
+        'delete'
     ];
 
     public function render()
@@ -32,13 +34,33 @@ class Index extends Component
         ]);
     }
 
+    public function confirmDelete($id)
+    {
+        $this->beasiswas_id = $id;
+        $this->alert('question', 'Apakah anda yakin akan menghapus beasiswa ini ?', [
+            'toast' => false,
+            'position' => 'center',
+            'showConfirmButton' => true,
+            'confirmButtonText' => 'Yes',
+            'showCancelButton' => true,
+            'cancelButtonText' => 'cancel',
+            'icon' => 'warning',
+            'onConfirmed' => 'delete',
+            'timer' => null,
+        ]);
+    }
+
+    public function delete() 
+    {
+        $beasiswa = Beasiswa::find($this->beasiswas_id);
+        Beasiswa::destroy($beasiswa->id);
+        
+        $this->beasiswa_id = null;
+        $this->alert('success', 'Berhasil menghapus beasiswa');
+    }
+
     public function beasiswaStore()
     {
         $this->alert('success', 'Berhasil menambahkan beasiswa');
-    }
-
-    public function beasiswaDeleted()
-    {
-        $this->alert('success', 'Berhasil menghapus beasiswa');
     }
 }

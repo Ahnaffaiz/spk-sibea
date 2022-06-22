@@ -23,46 +23,46 @@
                               </div>
                             </form>
                         </div>
-                        <button class="btn btn-primary text-end m-2" wire:click="$emit('add')">
-                          <i class="fas fa-plus"></i> Beasiswa
-                        </button>
                     </div>
                     <div class="card-body">
                         @if ($beasiswas->count() > 0)
                         <div class="table-responsive">
-                              <table class="table table-hover table-bordered">
-                                  <thead>
+                                <table class="table table-hover table-bordered">
+                                    <thead>
                                       <tr>
                                           <th>No</th>
                                           <th>Nama</th>
                                           <th>Pendaftar</th>
                                           <th>Aksi</th>
                                       </tr>
-                                  </thead>
-                                  <tbody>
+                                    </thead>
+                                    <tbody>
                                       @foreach ($beasiswas as $beasiswa)
                                       <tr>
                                           <td>{{ ($beasiswas->currentpage() - 1) * $beasiswas->perpage() + $loop->index + 1 }}</td>
                                           <td>{{ucWords($beasiswa->nama)}}</td>
                                           <td>{{$beasiswa->getPendaftar->count()}}</td>
                                           <td>
-                                                <a class="btn btn-warning btn-action" href="{{route('admin.skoring.ahp', $beasiswa->id)}}">
-                                                    <i class="fas fa-fire"></i>
-                                                    AHP
-                                                </a>
                                                 <a class="btn btn-danger btn-action" href="{{route('admin.skoring.promethee', $beasiswa->id)}}">
                                                     <i class="fas fa-fire"></i>
                                                     PROMETHEE
                                                 </a>
-                                              </td>
-                                          </tr>
+                                                <a class="btn btn-warning btn-action" href="{{route('admin.skoring.ahp', $beasiswa->id)}}">
+                                                    <i class="fas fa-fire"></i>
+                                                    AHP
+                                                </a>
+                                            </td>
+                                        </tr>
                                           @endforeach
-                                      </tbody>
+                                    </tbody>
                               </table>
                               {{$beasiswas->links()}}
                           </div>
                           @else
-                              <h6 class="text-danger">*Belum ada beasiswa</h6>
+                            <div class="empty-state" data-height="600">
+                              <img class="img-fluid" src="{{asset('backend/assets/img/empty.svg')}}" alt="image" style="height: 500px">
+                              <h2 class="mt-0">Belum ada pendaftar</h2>
+                          </div>
                           @endif
                     </div>
                 </div>
@@ -70,6 +70,5 @@
         </div>
       </div>
     </section>
-    @livewire('beasiswa.create', ['user' => $user], key($user->id))    
 </div>
   
