@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Ahp;
 
+use App\Models\RefKriteria;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

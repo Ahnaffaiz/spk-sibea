@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Promethee;
 
+use App\Models\RefKriteria;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BobotKriteria extends Model
+class ProBobotKriteria extends Model
 {
     use HasFactory;
     protected $guarded = [];

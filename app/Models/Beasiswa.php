@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Ahp\AhpPerbandinganKriteria;
+use App\Models\Promethee\ProBobotKriteria;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,7 +14,7 @@ class Beasiswa extends Model
 
     public function getBobot()
     {
-        return $this->hasMany(BobotKriteria::class, 'beasiswas_id', 'id');
+        return $this->hasMany(ProBobotKriteria::class, 'beasiswas_id', 'id');
     }
 
     public function getAhpBobot()

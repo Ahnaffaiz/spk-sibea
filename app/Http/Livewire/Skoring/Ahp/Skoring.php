@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Skoring\Ahp;
 
-use App\Models\AhpAlternative;
-use App\Models\AhpJumlahKriteria;
-use App\Models\AhpNilaiKriteria;
-use App\Models\AhpPerbandinganKriteria;
-use App\Models\AhpRandomIndex;
+use App\Models\Ahp\AhpAlternative;
+use App\Models\Ahp\AhpJumlahKriteria;
+use App\Models\Ahp\AhpNilaiKriteria;
+use App\Models\Ahp\AhpPerbandinganKriteria;
+use App\Models\Ahp\AhpRandomIndex;
 use App\Models\Pendaftar;
 use App\Models\RefKriteria;
 use App\Models\RefNilaiKriteria;

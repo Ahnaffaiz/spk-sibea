@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Beasiswa;
 
-use App\Models\AhpPerbandinganKriteria;
+use App\Models\Ahp\AhpPerbandinganKriteria;
 use App\Models\Beasiswa;
 use App\Models\RefKriteria;
 use Livewire\Component;

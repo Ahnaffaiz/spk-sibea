@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Promethe;
+namespace App\Models\Promethee;
 
 use App\Models\Pendaftar;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

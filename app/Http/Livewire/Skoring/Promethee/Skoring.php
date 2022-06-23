@@ -2,15 +2,14 @@
 
 namespace App\Http\Livewire\Skoring\Promethee;
 
-use App\Models\BobotKriteria;
 use App\Models\Pendaftar;
-use App\Models\Promethe\ProAlternative;
-use App\Models\Promethe\ProDecisionMatrix;
-use App\Models\Promethe\ProDiffMatrix;
+use App\Models\Promethee\ProAlternative;
+use App\Models\Promethee\ProBobotKriteria;
+use App\Models\Promethee\ProDecisionMatrix;
+use App\Models\Promethee\ProDiffMatrix;
 use App\Models\RefKriteria;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class Skoring extends Component
 {
@@ -39,7 +38,7 @@ class Skoring extends Component
     public function mount()
     {
         $this->kriterias = RefKriteria::get();
-        $this->bobotKriterias = BobotKriteria::where('beasiswas_id', $this->beasiswa->id)->get();
+        $this->bobotKriterias = ProBobotKriteria::where('beasiswas_id', $this->beasiswa->id)->get();
 
         $this->pendaftars = Pendaftar::where('beasiswas_id', $this->beasiswa->id)->orderBy('nama')->get();
         $this->matriks_normalisasi = ProAlternative::where('beasiswas_id', $this->beasiswa->id)->get()->sortBy(function($q){return $q->getPendaftar->nama;});

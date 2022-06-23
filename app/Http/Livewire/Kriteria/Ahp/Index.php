@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Kriteria\Ahp;
 
-use App\Models\AhpNilaiKriteria;
+use App\Models\Ahp\AhpNilaiKriteria;
 use App\Models\RefKriteria;
 use App\Models\RefNilaiKriteria;
 use Jantinnerezo\LivewireAlert\LivewireAlert;

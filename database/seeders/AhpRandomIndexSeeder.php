@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\AhpRandomIndex;
+use App\Models\Ahp\AhpRandomIndex;
 use Illuminate\Database\Seeder;
 
 class AhpRandomIndexSeeder extends Seeder

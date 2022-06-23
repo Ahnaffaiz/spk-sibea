@@ -34,6 +34,6 @@ class CreateAhpJumlahKriteriasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ahp_kriterias');
+        Schema::dropIfExists('ahp_jumlah_kriterias');
     }
 }

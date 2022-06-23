@@ -20,7 +20,7 @@ class CreateRefNilaiKriterias extends Migration
             $table->string('nama_akhir')->nullable();
             $table->float('nilai', 8, 2);
 
-            $table->foreign('ref_kriterias_id')->references('id')->on('ref_kriterias')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreign('ref_kriterias_id')->references('id')->on('ref_kriterias');
             $table->timestamps();
         });
     }

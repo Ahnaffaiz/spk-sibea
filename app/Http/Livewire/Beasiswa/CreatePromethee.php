@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Beasiswa;
 
 use App\Models\Beasiswa;
-use App\Models\BobotKriteria;
+use App\Models\Promethee\ProBobotKriteria;
 use App\Models\RefKriteria;
 use Livewire\Component;
 
@@ -60,7 +60,7 @@ class CreatePromethee extends Component
         $this->validate($this->rules);
         foreach ($this->bobot as $key => $value) {
             $kriteria = RefKriteria::where('kode', strtolower($key))->first();
-            BobotKriteria::updateOrCreate([
+            ProBobotKriteria::updateOrCreate([
                     'beasiswas_id' => $this->beasiswas_id,
                     'ref_kriterias_id' => $kriteria->id,
                 ],

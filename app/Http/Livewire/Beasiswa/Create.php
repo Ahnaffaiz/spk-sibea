@@ -2,9 +2,6 @@
 
 namespace App\Http\Livewire\Beasiswa;
 
-use App\Models\Beasiswa;
-use App\Models\BobotKriteria;
-use App\Models\RefKriteria;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
