@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('pages.home');
+})->name('home');
 
 Route::name('admin.')->middleware('is_admin')->prefix('/admin')->group(function () {
     Route::controller(MenuController::class)->group(function(){
@@ -34,5 +34,3 @@ Route::name('admin.')->middleware('is_admin')->prefix('/admin')->group(function 
     });
 });
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
