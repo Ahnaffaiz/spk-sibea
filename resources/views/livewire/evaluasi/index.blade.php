@@ -3,7 +3,7 @@
       <div class="section-header">
           <h1>@yield('title')</h1>
           <div class="section-header-breadcrumb">
-              <div class="breadcrumb-item active">Skoring</div>
+              <div class="breadcrumb-item active">Pendaftar</div>
           </div>
       </div>
   
@@ -22,51 +22,42 @@
                                 </div>
                               </div>
                             </form>
-                        </div> 
+                        </div>
                     </div>
                     <div class="card-body">
                         @if ($beasiswas->count() > 0)
                         <div class="table-responsive">
-                                <table class="table table-hover table-bordered">
-                                    <thead>
+                              <table class="table table-sm table-hover table-bordered">
+                                  <thead>
                                       <tr>
                                           <th>No</th>
                                           <th>Nama</th>
                                           <th>Pendaftar</th>
                                           <th>Aksi</th>
                                       </tr>
-                                    </thead>
-                                    <tbody>
+                                  </thead>
+                                  <tbody>
                                       @foreach ($beasiswas as $beasiswa)
                                       <tr>
                                           <td>{{ ($beasiswas->currentpage() - 1) * $beasiswas->perpage() + $loop->index + 1 }}</td>
                                           <td>{{ucWords($beasiswa->nama)}}</td>
                                           <td>{{$beasiswa->getPendaftar->count()}}</td>
                                           <td>
-                                                <a class="btn btn-success btn-action" href="{{route('admin.skoring.saw', $beasiswa->id)}}">
-                                                    <i class="fas fa-fire"></i>
-                                                    ACTUAL
+                                                <a class="btn btn-primary btn-action" href="{{route('admin.evaluasi.detail', $beasiswa->id)}}">
+                                                    <i class="fas fa-book"></i>
                                                 </a>
-                                                <a class="btn btn-danger btn-action" href="{{route('admin.skoring.promethee', $beasiswa->id)}}">
-                                                    <i class="fas fa-fire"></i>
-                                                    PROMETHEE
-                                                </a>
-                                                <a class="btn btn-warning btn-action" href="{{route('admin.skoring.ahp', $beasiswa->id)}}">
-                                                    <i class="fas fa-fire"></i>
-                                                    AHP
-                                                </a>
-                                            </td>
-                                        </tr>
+                                              </td>
+                                          </tr>
                                           @endforeach
-                                    </tbody>
+                                      </tbody>
                               </table>
                               {{$beasiswas->links()}}
                           </div>
                           @else
                             <div class="empty-state" data-height="600">
-                              <img class="img-fluid" src="{{asset('backend/assets/img/empty.svg')}}" alt="image" style="height: 500px">
-                              <h2 class="mt-0">Belum ada pendaftar</h2>
-                          </div>
+                                <img class="img-fluid" src="{{asset('backend/assets/img/empty.svg')}}" alt="image" style="height: 500px">
+                                <h2 class="mt-0">Belum ada pendaftar</h2>
+                            </div>
                           @endif
                     </div>
                 </div>

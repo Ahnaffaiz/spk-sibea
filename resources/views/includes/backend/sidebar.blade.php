@@ -19,6 +19,7 @@
         </li>
         <li class="@yield('pendaftar-active')"><a class="nav-link" href="{{route('admin.pendaftar')}}"><i class="fas fa-users"></i> <span>Pendaftar</span></a></li>
         <li class="@yield('skoring-active')"><a class="nav-link" href="{{route('admin.skoring')}}"><i class="fas fa-sort-numeric-down"></i></i> <span>Skoring</span></a></li>
+        <li class="@yield('evaluasi-active')"><a class="nav-link" href="{{route('admin.evaluasi')}}"><i class="fas fa-book"></i> <span>Evaluasi</span></a></li>
         @endauth
       </ul>
 

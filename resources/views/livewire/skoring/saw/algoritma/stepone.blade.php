@@ -92,18 +92,18 @@
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$item->getPendaftar->nama}}</td>
-                            <td>{{$item->getDecisionMatrices->sta}}</td>
-                            <td>{{$item->getDecisionMatrices->sti}}</td>
-                            <td>{{$item->getDecisionMatrices->spa}}</td>
-                            <td>{{$item->getDecisionMatrices->spi}}</td>
-                            <td>{{$item->getDecisionMatrices->ska}}</td>
-                            <td>{{$item->getDecisionMatrices->ski}}</td>
-                            <td>{{$item->getDecisionMatrices->sha}}</td>
-                            <td>{{$item->getDecisionMatrices->shi}}</td>
-                            <td>{{$item->getDecisionMatrices->sho}}</td>
-                            <td>{{$item->getDecisionMatrices->skr}}</td>
-                            <td>{{$item->getDecisionMatrices->sjt}}</td>
-                            <td>{{$item->getDecisionMatrices->skj}}</td>
+                            <td>{{$item->getNormalizedMatrices->sta}}</td>
+                            <td>{{$item->getNormalizedMatrices->sti}}</td>
+                            <td>{{$item->getNormalizedMatrices->spa}}</td>
+                            <td>{{$item->getNormalizedMatrices->spi}}</td>
+                            <td>{{$item->getNormalizedMatrices->ska}}</td>
+                            <td>{{$item->getNormalizedMatrices->ski}}</td>
+                            <td>{{$item->getNormalizedMatrices->sha}}</td>
+                            <td>{{$item->getNormalizedMatrices->shi}}</td>
+                            <td>{{$item->getNormalizedMatrices->sho}}</td>
+                            <td>{{$item->getNormalizedMatrices->skr}}</td>
+                            <td>{{$item->getNormalizedMatrices->sjt}}</td>
+                            <td>{{$item->getNormalizedMatrices->skj}}</td>
                         </tr>
                     @endforeach
                 </tbody>

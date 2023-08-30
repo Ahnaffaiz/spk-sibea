@@ -19,7 +19,7 @@
                                 @foreach ($nilai_prioritas_kriterias->whereIn('ref_nilai_kriterias_id', $ref_nilai_kriterias->where('ref_kriterias_id', $item->id)->pluck('id')->toArray()) as $nilai)
                                     <tr>
                                         <td class="text-center">{{$loop->iteration}}</td>
-                                        @if ($item->kode == 'sho' || $item->kode == 'sha' || $item->kode == 'shi')
+                                        @if ($item->kode == 'sho' || $item->kode == 'sha' || $item->kode == 'shi' || $item->kode == 'skj')
                                         <td>{{$ref_nilai_kriterias->where('id', $nilai->ref_nilai_kriterias_id)->first()->nama_awal .'-'. $ref_nilai_kriterias->where('id', $nilai->ref_nilai_kriterias_id)->first()->nama_akhir}}</td>    
                                         @else
                                         <td>{{$ref_nilai_kriterias->where('id', $nilai->ref_nilai_kriterias_id)->first()->nama_awal}}</td>

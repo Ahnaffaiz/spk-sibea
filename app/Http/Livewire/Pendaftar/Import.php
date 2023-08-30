@@ -37,7 +37,6 @@ class Import extends Component
 
     protected $rules  = [
         'data' => 'required|mimes:csv,xls,xlsx',
-        'is_update' => 'required|in:true,false'
     ];
 
 

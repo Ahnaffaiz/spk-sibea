@@ -31,24 +31,98 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($pendaftars as $pendaftar)    
-                                <tr>
-                                    <td>{{($pendaftars->currentpage() - 1) * $pendaftars->perpage() + $loop->index + 1}}</td>
-                                    <td>{{$pendaftar->nama}}</td>
-                                    <td>{{ucWords($pendaftar->getsta->nama_awal)}}</td>
-                                    <td>{{ucWords($pendaftar->getsti->nama_awal)}}</td>
-                                    <td>{{ucWords($pendaftar->getspa->nama_awal)}}</td>
-                                    <td>{{ucWords($pendaftar->getspi->nama_awal)}}</td>
-                                    <td>{{ucWords($pendaftar->getska->nama_awal)}}</td>
-                                    <td>{{ucWords($pendaftar->getski->nama_awal)}}</td>
-                                    <td>{{ucWords($pendaftar->getsha->nama_awal)}} - {{ucWords($pendaftar->getsha->nama_akhir)}}</td>
-                                    <td>{{ucWords($pendaftar->getshi->nama_awal)}} - {{ucWords($pendaftar->getshi->nama_akhir)}}</td>
-                                    <td>{{ucWords($pendaftar->getsho->nama_awal)}} - {{ucWords($pendaftar->getsho->nama_akhir)}}</td>
-                                    <td>{{ucWords($pendaftar->getskr->nama_awal)}}</td>
-                                    <td>{{ucWords($pendaftar->getsjt->nama_awal)}}</td>
-                                    <td>{{ucWords($pendaftar->getskj->nama_awal)}}</td>
-                                </tr>
-                                @endforeach
+                                <tbody>
+                                    @foreach ($pendaftars as $pendaftar)    
+                                    <tr>
+                                        <td>{{($pendaftars->currentpage() - 1) * $pendaftars->perpage() + $loop->index + 1}}</td>
+                                        <td>{{$pendaftar->nama}}</td>
+                                        <td>
+                                            @if ($pendaftar->getsta != null)
+                                            {{ucWords($pendaftar->getsta->nama_awal)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($pendaftar->getsti != null)
+                                            {{ucWords($pendaftar->getsti->nama_awal)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($pendaftar->getspa != null)
+                                            {{ucWords($pendaftar->getspa->nama_awal)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($pendaftar->getspi != null)
+                                            {{ucWords($pendaftar->getspi->nama_awal)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($pendaftar->getska != null)
+                                            {{ucWords($pendaftar->getska->nama_awal)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($pendaftar->getski != null)
+                                            {{ucWords($pendaftar->getski->nama_awal)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($pendaftar->getsha != null)
+                                            {{ucWords($pendaftar->getsha->nama_awal)}} - {{ucWords($pendaftar->getsha->nama_akhir)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($pendaftar->getshi != null)
+                                            {{ucWords($pendaftar->getshi->nama_awal)}} - {{ucWords($pendaftar->getshi->nama_akhir)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($pendaftar->getsho != null)
+                                            {{ucWords($pendaftar->getsho->nama_awal)}} - {{ucWords($pendaftar->getsho->nama_akhir)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($pendaftar->getskr != null)
+                                            {{ucWords($pendaftar->getskr->nama_awal)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($pendaftar->getsjt != null)
+                                            {{ucWords($pendaftar->getsjt->nama_awal)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($pendaftar->getskj != null)
+                                            {{ucWords($pendaftar->getskj->nama_awal)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
                             </tbody>
                         </table>
                         {{$pendaftars->links()}}

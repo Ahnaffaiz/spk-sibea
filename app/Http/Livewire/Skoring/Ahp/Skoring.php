@@ -26,7 +26,8 @@ class Skoring extends Component
             $total_bobots, 
             $matriks_nilai_kriterias, 
             $konsistensi, 
-            $nilai_prioritas_kriterias;
+            $nilai_prioritas_kriterias,
+            $matriks_ranking;
 
     public $jumlah_kriterias, $RI_tables;
 
@@ -48,8 +49,8 @@ class Skoring extends Component
         $this->ref_kriterias = RefKriteria::get();
         $this->ref_nilai_kriterias = RefNilaiKriteria::get();
 
-        $this->matriks_ranking = AhpAlternative::select('id', 'pendaftars_id','ranking')->where('beasiswas_id', $this->beasiswa->id)->orderBy('ranking', 'asc')->get();
-        
+        $this->matriks_ranking = AhpAlternative::where('beasiswas_id', $this->beasiswa->id)->orderBy('ranking', 'asc')->get();
+
         $this->step1();
         $this->step3();
     }
@@ -98,7 +99,7 @@ class Skoring extends Component
             //nilai setiap kriteria
             foreach ($this->kriterias as $item2) {
                 $bobot = $this->matriks_nilai_kriterias->where('first_ref_kriterias_id', $item1->id)->where('last_ref_kriterias_id', $item2->id)->first()->bobot;
-                $nilai = $bobot / $this->total_bobots[$item2->kode];
+                $nilai = round($bobot / $this->total_bobots[$item2->kode], 3);
                 AhpPerbandinganKriteria::where('beasiswas_id',$this->beasiswa->id,)
                     ->where('first_ref_kriterias_id', $item1->id)
                     ->where('last_ref_kriterias_id', $item2->id)
@@ -108,8 +109,8 @@ class Skoring extends Component
             //jumlah pada setiap kriteria
             $kriteria = AhpPerbandinganKriteria::where('beasiswas_id', $this->beasiswa->id)->where('first_ref_kriterias_id', $item1->id)->get();
             $jumlah = $kriteria->sum('nilai');
-            $prioritas = $jumlah / $this->kriterias->count();
-            $eigen =  $this->total_bobots[$item1->kode] * $prioritas; 
+            $prioritas = round($jumlah / $this->kriterias->count(), 3);
+            $eigen =  round($this->total_bobots[$item1->kode] * $prioritas, 3);  
 
             AhpJumlahKriteria::updateOrCreate(
                 [
@@ -157,7 +158,7 @@ class Skoring extends Component
                     AhpNilaiKriteria::updateOrCreate([
                         'ref_nilai_kriterias_id' => $nilai->id,
                     ],[
-                        'prioritas' => $nilai->nilai/$nilai_total
+                        'prioritas' => round($nilai->nilai/$nilai_total,3)
                     ]);
                 }
             }
@@ -170,18 +171,66 @@ class Skoring extends Component
         $pendaftars = Pendaftar::where('beasiswas_id', $this->beasiswa->id)->get();
         
         foreach ($pendaftars as $pendaftar) {
-            $sta = $this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getsta->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->sta)->first()->prioritas;
-            $sti = $this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getsti->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->sti)->first()->prioritas;
-            $spa = $this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getspa->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->spa)->first()->prioritas;
-            $spi = $this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getspi->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->spi)->first()->prioritas;
-            $ska = $this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getska->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->ska)->first()->prioritas;
-            $ski = $this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getski->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->ski)->first()->prioritas;
-            $sha = $this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getsha->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->sha)->first()->prioritas;
-            $shi = $this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getshi->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->shi)->first()->prioritas;
-            $sho = $this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getsho->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->sho)->first()->prioritas;
-            $skr = $this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getskr->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->skr)->first()->prioritas;
-            $sjt = $this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getsjt->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->sjt)->first()->prioritas;
-            $skj = $this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getskj->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->skj)->first()->prioritas;
+            if($pendaftar->getsta != null) {
+                $sta = round($this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getsta->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->sta)->first()->prioritas, 3);
+            } else {
+                $sta = 0;
+            }
+            if($pendaftar->getsti != null) {
+                $sti = round($this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getsti->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->sti)->first()->prioritas, 3);
+            } else {
+                $sti = 0;
+            }
+            if($pendaftar->getspa != null) {
+                $spa = round($this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getspa->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->spa)->first()->prioritas, 3);
+            } else {
+                $spa = 0;
+            }
+            if($pendaftar->getspi != null) {
+                $spi = round($this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getspi->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->spi)->first()->prioritas, 3);
+            } else {
+                $spi = 0;
+            }
+            if($pendaftar->getska != null) {
+                $ska = round($this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getska->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->ska)->first()->prioritas, 3);
+            } else {
+                $ska = 0;
+            }
+            if($pendaftar->getski != null) {
+                $ski = round($this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getski->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->ski)->first()->prioritas, 3);
+            } else {
+                $ski = 0;
+            }
+            if($pendaftar->getsha != null) {
+                $sha = round($this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getsha->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->sha)->first()->prioritas, 3);
+            } else {
+                $sha = 0;
+            }
+            if($pendaftar->getshi != null) {
+                $shi = round($this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getshi->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->shi)->first()->prioritas, 3);
+            } else {
+                $shi = 0;
+            }
+            if($pendaftar->getsho != null) {
+                $sho = round($this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getsho->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->sho)->first()->prioritas, 3);
+            } else {
+                $sho = 0;
+            }
+            if($pendaftar->getskr != null) {
+                $skr = round($this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getskr->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->skr)->first()->prioritas, 3);
+            } else {
+                $skr = 0;
+            }
+            if($pendaftar->getsjt != null) {
+                $sjt = round($this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getsjt->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->sjt)->first()->prioritas, 3);
+            } else {
+                $sjt = 0;
+            }
+            if($pendaftar->getskj != null) {
+                $skj = round($this->jumlah_kriterias->where('ref_kriterias_id', $pendaftar->getskj->getKriteria->first()->id)->first()->prioritas * $this->nilai_prioritas_kriterias->where('ref_nilai_kriterias_id', $pendaftar->skj)->first()->prioritas, 3);
+            } else {
+                $skj = 0;
+            }
 
             $total = $sta + $sti + $spa + $spi + $ska + $ski + $sha + $shi + $sho + $skr + $sjt + $skj;
             AhpAlternative::updateOrCreate([

@@ -10,7 +10,7 @@
   
       <div class="section-body">
         <div class="row">
-            <div class="col-lg-8 col-md-6 col-sm-12">
+            <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="card">
                     <div class="card-header">
                         <h4>Import Pendaftar {{ucWords($beasiswa->nama)}}</h4>
@@ -29,16 +29,6 @@
                                     <span class="text-danger error"><small>{{ $message }}</small></span>
                                 @enderror
                             </div>
-                            <div class="col-4">
-                                <select class="custom-select @error('is_update') is-invalid @enderror" wire:model="is_update">
-                                    <option >--PILIH--</option>
-                                    <option value="false">INSERT</option>
-                                    <option value="true">UPDATE</option>
-                                </select>
-                                @error('is_update')
-                                    <span class="text-danger error"><small>{{ $message }}</small></span>
-                                @enderror
-                            </div>
                             <div class="col-3">
                                 <button class="btn btn-primary  {{ $loading ? 'disabled btn-progress' : ''  }} " wire:click="confirmImport">Simpan</button>
                             </div>
@@ -46,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="card card-statistic-1">
                     <div class="card-icon bg-primary">
                       <i class="fas fa-users"></i>
@@ -105,7 +95,6 @@
                                         <th>skr</th>
                                         <th>sjt</th>
                                         <th>skj</th>
-                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -113,25 +102,89 @@
                                     <tr>
                                         <td>{{($pendaftars->currentpage() - 1) * $pendaftars->perpage() + $loop->index + 1}}</td>
                                         <td>{{$pendaftar->nama}}</td>
-                                        <td>{{ucWords($pendaftar->getsta->nama_awal)}}</td>
-                                        <td>{{ucWords($pendaftar->getsti->nama_awal)}}</td>
-                                        <td>{{ucWords($pendaftar->getspa->nama_awal)}}</td>
-                                        <td>{{ucWords($pendaftar->getspi->nama_awal)}}</td>
-                                        <td>{{ucWords($pendaftar->getska->nama_awal)}}</td>
-                                        <td>{{ucWords($pendaftar->getski->nama_awal)}}</td>
-                                        <td>{{ucWords($pendaftar->getsha->nama_awal)}} - {{ucWords($pendaftar->getsha->nama_akhir)}}</td>
-                                        <td>{{ucWords($pendaftar->getshi->nama_awal)}} - {{ucWords($pendaftar->getshi->nama_akhir)}}</td>
-                                        <td>{{ucWords($pendaftar->getsho->nama_awal)}} - {{ucWords($pendaftar->getsho->nama_akhir)}}</td>
-                                        <td>{{ucWords($pendaftar->getskr->nama_awal)}}</td>
-                                        <td>{{ucWords($pendaftar->getsjt->nama_awal)}}</td>
-                                        <td>{{ucWords($pendaftar->getskj->nama_awal)}}</td>
                                         <td>
-                                            <button class="btn btn-primary" wire:click="show({{$pendaftar->id}})">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                            <button class="btn btn-danger" wire:click="confirmDelete({{$pendaftar->id}})">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
+                                            @if ($pendaftar->getsta != null)
+                                            {{ucWords($pendaftar->getsta->nama_awal)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($pendaftar->getsti != null)
+                                            {{ucWords($pendaftar->getsti->nama_awal)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($pendaftar->getspa != null)
+                                            {{ucWords($pendaftar->getspa->nama_awal)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($pendaftar->getspi != null)
+                                            {{ucWords($pendaftar->getspi->nama_awal)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($pendaftar->getska != null)
+                                            {{ucWords($pendaftar->getska->nama_awal)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($pendaftar->getski != null)
+                                            {{ucWords($pendaftar->getski->nama_awal)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($pendaftar->getsha != null)
+                                            {{ucWords($pendaftar->getsha->nama_awal)}} - {{ucWords($pendaftar->getsha->nama_akhir)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($pendaftar->getshi != null)
+                                            {{ucWords($pendaftar->getshi->nama_awal)}} - {{ucWords($pendaftar->getshi->nama_akhir)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($pendaftar->getsho != null)
+                                            {{ucWords($pendaftar->getsho->nama_awal)}} - {{ucWords($pendaftar->getsho->nama_akhir)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($pendaftar->getskr != null)
+                                            {{ucWords($pendaftar->getskr->nama_awal)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($pendaftar->getsjt != null)
+                                            {{ucWords($pendaftar->getsjt->nama_awal)}}
+                                            @else 
+                                            0
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($pendaftar->getskj != null)
+                                            {{ucWords($pendaftar->getskj->nama_awal)}} - {{ucWords($pendaftar->getskj->nama_akhir)}}
+                                            @else 
+                                            0
+                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach

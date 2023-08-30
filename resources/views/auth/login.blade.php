@@ -27,11 +27,11 @@
                 <div class="d-block">
                     <label for="password" class="control-label">Password</label>
                   <div class="float-right">
-                    @if (Route::has('password.request'))
+                    {{-- @if (Route::has('password.request'))
                         <a class="btn btn-link" href="{{ route('password.request') }}">
                             {{ __('Forgot Your Password?') }}
                         </a>
-                    @endif
+                    @endif --}}
                   </div>
                 </div>
                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">

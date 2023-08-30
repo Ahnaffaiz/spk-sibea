@@ -37,6 +37,7 @@
                     <tr>
                         <th>Ranking</th>
                         <th>Nama</th>
+                        <th>Outranking Flow</th>
                         <th class="text-center">Status</th>
                     </tr>
                 </thead>
@@ -45,6 +46,7 @@
                         <tr>
                             <td>{{$item->ranking}}</td>
                             <td>{{$item->getPendaftar->nama}}</td>
+                            <td>{{$item->outranking_flow}}</td>
                             <td class="text-center">
                                 @if ($item->getPendaftar->is_accepted_promethee)
                                     <div class="badge badge-success">diterima</div>

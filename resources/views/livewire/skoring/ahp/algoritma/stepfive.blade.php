@@ -18,18 +18,66 @@
                     <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$alternative->getPendaftar->nama}}</td>
-                        <td>{{$alternative->getPendaftar->getsta->nama_awal}}</td>
-                        <td>{{$alternative->getPendaftar->getsti->nama_awal}}</td>
-                        <td>{{$alternative->getPendaftar->getspa->nama_awal}}</td>
-                        <td>{{$alternative->getPendaftar->getspi->nama_awal}}</td>
-                        <td>{{$alternative->getPendaftar->getska->nama_awal}}</td>
-                        <td>{{$alternative->getPendaftar->getski->nama_awal}}</td>
-                        <td>{{$alternative->getPendaftar->getsha->nama_awal}} - {{$alternative->getPendaftar->getsha->nama_akhir}}</td>
-                        <td>{{$alternative->getPendaftar->getshi->nama_awal}} - {{$alternative->getPendaftar->getshi->nama_akhir}}</td>
-                        <td>{{$alternative->getPendaftar->getsho->nama_awal}} - {{$alternative->getPendaftar->getsho->nama_akhir}}</td>
-                        <td>{{$alternative->getPendaftar->getskr->nama_awal}}</td>
-                        <td>{{$alternative->getPendaftar->getsjt->nama_awal}}</td>
-                        <td>{{$alternative->getPendaftar->getskj->nama_awal}}</td>
+                        @if ($alternative->getPendaftar->getsta != null)
+                            <td>{{$alternative->getPendaftar->getsta->nama_awal}}</td>
+                        @else    
+                            <td>null</td>
+                        @endif
+                        @if ($alternative->getPendaftar->getsti != null)
+                            <td>{{$alternative->getPendaftar->getsti->nama_awal}}</td>
+                        @else    
+                            <td>null</td>
+                        @endif
+                        @if ($alternative->getPendaftar->getspa != null)
+                            <td>{{$alternative->getPendaftar->getspa->nama_awal}}</td>
+                        @else    
+                            <td>null</td>
+                        @endif
+                        @if ($alternative->getPendaftar->getspi != null)
+                            <td>{{$alternative->getPendaftar->getspi->nama_awal}}</td>
+                        @else    
+                            <td>null</td>
+                        @endif
+                        @if ($alternative->getPendaftar->getska != null)
+                            <td>{{$alternative->getPendaftar->getska->nama_awal}}</td>
+                        @else    
+                            <td>null</td>
+                        @endif
+                        @if ($alternative->getPendaftar->getski != null)
+                            <td>{{$alternative->getPendaftar->getski->nama_awal}}</td>
+                        @else    
+                            <td>null</td>
+                        @endif
+                        @if ($alternative->getPendaftar->getsha != null)
+                            <td>{{$alternative->getPendaftar->getsha->nama_awal}} - {{$alternative->getPendaftar->getsha->nama_akhir}}</td>
+                        @else    
+                            <td>null</td>
+                        @endif
+                        @if ($alternative->getPendaftar->getshi != null)
+                            <td>{{$alternative->getPendaftar->getshi->nama_awal}} - {{$alternative->getPendaftar->getshi->nama_akhir}}</td>
+                        @else    
+                            <td>null</td>
+                        @endif
+                        @if ($alternative->getPendaftar->getsho != null)
+                            <td>{{$alternative->getPendaftar->getsho->nama_awal}} - {{$alternative->getPendaftar->getsho->nama_akhir}}</td>
+                        @else    
+                            <td>null</td>
+                        @endif
+                        @if ($alternative->getPendaftar->getskr != null)
+                            <td>{{$alternative->getPendaftar->getskr->nama_awal}}</td>
+                        @else    
+                            <td>null</td>
+                        @endif
+                        @if ($alternative->getPendaftar->getsjt != null)
+                            <td>{{$alternative->getPendaftar->getsjt->nama_awal}}</td>
+                        @else    
+                            <td>null</td>
+                        @endif
+                        @if ($alternative->getPendaftar->getskj != null)
+                            <td>{{$alternative->getPendaftar->getskj->nama_awal}}</td>
+                        @else    
+                            <td>null</td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>
@@ -84,6 +132,7 @@
                     <tr>
                         <th>Ranking</th>
                         <th>Nama</th>
+                        <th>Total</th>
                         <th class="text-center">Status</th>
                     </tr>
                 </thead>
@@ -92,6 +141,7 @@
                         <tr>
                             <td>{{$item->ranking}}</td>
                             <td>{{$item->getPendaftar->nama}}</td>
+                            <td>{{$item->total}}</td>
                             <td class="text-center">
                                 @if ($item->getPendaftar->is_accepted_ahp)
                                     <div class="badge badge-success">diterima</div>

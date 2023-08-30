@@ -31,6 +31,9 @@ Route::name('admin.')->middleware('is_admin')->prefix('/admin')->group(function 
         Route::get('/skoring','skoring')->name('skoring');
         Route::get('/skoring/promethee/{id}','promethee')->name('skoring.promethee');
         Route::get('/skoring/ahp/{id}','ahp')->name('skoring.ahp');
+        Route::get('/skoring/saw/{id}','saw')->name('skoring.saw');
+        Route::get('/evaluasi','evaluasi')->name('evaluasi');
+        Route::get('/evaluasi-detail/{id}','evaluasiDetail')->name('evaluasi.detail');
     });
 });
 Auth::routes();

@@ -27,7 +27,8 @@ class Skoring extends Component
             $matriks_agregate, 
             $matriks_agregate_sementara,
             $matriks_ouranking,
-            $matriks_ranking;
+            $matriks_ranking,
+            $matriks_outranking;
     
     public $active_tab=0;
 
@@ -39,16 +40,16 @@ class Skoring extends Component
     {
         $this->kriterias = RefKriteria::get();
         $this->bobotKriterias = ProBobotKriteria::where('beasiswas_id', $this->beasiswa->id)->get();
-
         $this->pendaftars = Pendaftar::where('beasiswas_id', $this->beasiswa->id)->orderBy('nama')->get();
         $this->matriks_normalisasi = ProAlternative::where('beasiswas_id', $this->beasiswa->id)->get()->sortBy(function($q){return $q->getPendaftar->nama;});
         $this->matriks_diff = ProDiffMatrix::where('beasiswas_id', $this->beasiswa->id)->get();
         $this->matriks_agregate = ProDiffMatrix::select('id', 'first_alternatives_id', 'second_alternatives_id', 'agregate_function')->where('beasiswas_id', $this->beasiswa->id)->get();
         $this->matriks_outranking = $this->matriks_normalisasi;
-        $this->matriks_ranking = ProAlternative::select('id', 'pendaftars_id', 'ranking')->where('beasiswas_id', $this->beasiswa->id)->orderBy('ranking', 'asc')->get();
+        $this->matriks_ranking = ProAlternative::select('id', 'pendaftars_id', 'outranking_flow','ranking')->where('beasiswas_id', $this->beasiswa->id)->orderBy('ranking', 'asc')->get();
 
         $this->step3();
         $this->step4();
+        
     }
 
     public function openTab($no)
@@ -122,6 +123,22 @@ class Skoring extends Component
                 'skj' => $pendaftars->min('getskj.nilai'),
             ];
         foreach ($pendaftars as $pendaftar) {
+            $nilai_pendaftar =
+            [
+                'sta' => ($pendaftar->getsta != null) ? $pendaftar->getsta->nilai : 0,
+                'sti' => ($pendaftar->getsti != null) ? $pendaftar->getsti->nilai : 0,
+                'spa' => ($pendaftar->getska != null) ? $pendaftar->getska->nilai : 0,
+                'spi' => ($pendaftar->getski != null) ? $pendaftar->getski->nilai : 0,
+                'ska' => ($pendaftar->getspa != null) ? $pendaftar->getspa->nilai : 0,
+                'ski' => ($pendaftar->getspi != null) ? $pendaftar->getspi->nilai : 0,
+                'sha' => ($pendaftar->getsha != null) ? $pendaftar->getsha->nilai : 0,
+                'shi' => ($pendaftar->getshi != null) ? $pendaftar->getshi->nilai : 0,
+                'sho' => ($pendaftar->getsho != null) ? $pendaftar->getsho->nilai : 0,
+                'skr' => ($pendaftar->getskr != null) ? $pendaftar->getskr->nilai : 0,
+                'sjt' => ($pendaftar->getskj != null) ? $pendaftar->getskj->nilai : 0,
+                'skj' => ($pendaftar->getskj != null) ? $pendaftar->getskj->nilai : 0,
+            ];
+
             ProAlternative::updateOrCreate([
                     'beasiswas_id' => $this->beasiswa->id,
                     'pendaftars_id' => $pendaftar->id,
@@ -131,18 +148,18 @@ class Skoring extends Component
             ProDecisionMatrix::updateOrCreate([
                 'pro_alternatives_id' => ProAlternative::select('id')->where('beasiswas_id', $this->beasiswa->id)->where('pendaftars_id', $pendaftar->id)->first()->id,
             ],[
-                 'sta' => ($nilai_maks['sta'] - $pendaftar->getsta->nilai) / ($nilai_maks['sta'] - $nilai_min['sta']),
-                 'sti' => ($nilai_maks['sti'] - $pendaftar->getsti->nilai) / ($nilai_maks['sti'] - $nilai_min['sti']),
-                 'ska' => ($nilai_maks['ska'] - $pendaftar->getska->nilai) / ($nilai_maks['ska'] - $nilai_min['ska']),
-                 'ski' => ($nilai_maks['ski'] - $pendaftar->getski->nilai) / ($nilai_maks['ski'] - $nilai_min['ski']),
-                 'spa' => ($nilai_maks['spa'] - $pendaftar->getspa->nilai) / ($nilai_maks['spa'] - $nilai_min['spa']),
-                 'spi' => ($nilai_maks['spi'] - $pendaftar->getspi->nilai) / ($nilai_maks['spi'] - $nilai_min['spi']),
-                 'sha' => ($nilai_maks['sha'] - $pendaftar->getsha->nilai) / ($nilai_maks['sha'] - $nilai_min['sha']),
-                 'shi' => ($nilai_maks['shi'] - $pendaftar->getshi->nilai) / ($nilai_maks['shi'] - $nilai_min['shi']),
-                 'sho' => ($nilai_maks['sho'] - $pendaftar->getsho->nilai) / ($nilai_maks['sho'] - $nilai_min['sho']),
-                 'skr' => ($nilai_maks['skr'] - $pendaftar->getskr->nilai) / ($nilai_maks['skr'] - $nilai_min['skr']),
-                 'sjt' => ($pendaftar->getsjt->nilai - $nilai_min['sjt'] ) / ($nilai_maks['sjt'] - $nilai_min['sjt']),
-                 'skj' => ($nilai_maks['skj'] - $pendaftar->getskj->nilai) / ($nilai_maks['skj'] - $nilai_min['skj']),
+                 'sta' => round(($nilai_maks['sta'] -  $nilai_pendaftar['sta']) / ($nilai_maks['sta'] - $nilai_min['sta']), 3),
+                 'sti' => round(($nilai_maks['sti'] -  $nilai_pendaftar['sti']) / ($nilai_maks['sti'] - $nilai_min['sti']), 3),
+                 'ska' => round(($nilai_maks['ska'] -  $nilai_pendaftar['ska']) / ($nilai_maks['ska'] - $nilai_min['ska']), 3),
+                 'ski' => round(($nilai_maks['ski'] -  $nilai_pendaftar['ski']) / ($nilai_maks['ski'] - $nilai_min['ski']), 3),
+                 'spa' => round(($nilai_maks['spa'] -  $nilai_pendaftar['spa']) / ($nilai_maks['spa'] - $nilai_min['spa']), 3),
+                 'spi' => round(($nilai_maks['spi'] -  $nilai_pendaftar['spi']) / ($nilai_maks['spi'] - $nilai_min['spi']), 3),
+                 'sha' => round(($nilai_maks['sha'] -  $nilai_pendaftar['sha']) / ($nilai_maks['sha'] - $nilai_min['sha']), 3),
+                 'shi' => round(($nilai_maks['shi'] -  $nilai_pendaftar['shi']) / ($nilai_maks['shi'] - $nilai_min['shi']), 3),
+                 'sho' => round(($nilai_maks['sho'] -  $nilai_pendaftar['sho']) / ($nilai_maks['sho'] - $nilai_min['sho']), 3),
+                 'skr' => round(($nilai_maks['skr'] -  $nilai_pendaftar['skr']) / ($nilai_maks['skr'] - $nilai_min['skr']), 3),
+                 'sjt' => round(($nilai_pendaftar['sjt'] - $nilai_min['sjt'] ) / ($nilai_maks['sjt'] - $nilai_min['sjt']), 3),
+                 'skj' => round(($nilai_maks['skj'] - $nilai_pendaftar['skj']) / ($nilai_maks['skj'] - $nilai_min['skj']), 3),
             ]);
         }
         
@@ -276,8 +293,7 @@ class Skoring extends Component
                 $sjt = $value['sjt'] * $this->bobotKriterias->where('getKriteria.kode','sjt')->first()->bobot;
                 $skj = $value['skj'] * $this->bobotKriterias->where('getKriteria.kode','skj')->first()->bobot;
 
-                $agregate_func = array_sum([$sta,$sti,$spa,$spi,$ska,$ski,$sha,$shi,$sho,$skr,$sjt,$skj])/$this->bobotKriterias->sum('bobot');
-                
+                $agregate_func = round(array_sum([$sta,$sti,$spa,$spi,$ska,$ski,$sha,$shi,$sho,$skr,$sjt,$skj])/$this->bobotKriterias->count('bobot'),3);
                 $this->matriks_bobot_agregate[$key] = [
                     'sta' => $sta,
                     'sti' => $sti,
@@ -294,6 +310,9 @@ class Skoring extends Component
                     'agregate' => $agregate_func
                 ];
 
+                // dd($sta+$sti+$spa+$spi+$ska+$ski+$sha+$shi+$sho+$skr+$sjt+$skj . $sta . ', ' . $sti . ', ' . $spa . ', ' .$spi . ', ' . $ska  . ', ' . $ski . ', ' . $sha . ', ' . $shi . ', ' . $sho . ', ' . $skr . ', ' . $sjt . ', ' . $skj );
+                // dd($sta . ', ' . $sti . ', ' . $spa . ', ' .$spi . ', ' . $ska  . ', ' . $ski . ', ' . $sha . ', ' . $shi . ', ' . $sho . ', ' . $skr . ', ' . $sjt . ', ' . $skj . '   ,    ' . array_sum([$sta,$sti,$spa,$spi,$ska,$ski,$sha,$shi,$sho,$skr,$sjt,$skj]));
+                // dd(array_sum([$sta,$sti,$spa,$spi,$ska,$ski,$sha,$shi,$sho,$skr,$sjt,$skj]));
                 $this->matriks_agregate_sementara[$key] = $agregate_func;
             }
         }
@@ -312,8 +331,8 @@ class Skoring extends Component
         $pendaftars = ProAlternative::where('beasiswas_id', $this->beasiswa->id)->get();
         $n = $pendaftars->count();
         foreach ($pendaftars as $item) {
-            $leaving_flow = 1/($n-1) * $this->matriks_agregate->where('first_alternatives_id', $item->id)->sum('agregate_function');
-            $entering_flow = 1/($n-1) * $this->matriks_agregate->where('second_alternatives_id', $item->id)->sum('agregate_function');
+            $leaving_flow = round(1/($n-1) * $this->matriks_agregate->where('first_alternatives_id', $item->id)->sum('agregate_function'),3);
+            $entering_flow = round(1/($n-1) * $this->matriks_agregate->where('second_alternatives_id', $item->id)->sum('agregate_function'),3);
             ProAlternative::where('id', $item->id)
                 ->update([
                     'leaving_flow' => $leaving_flow,
@@ -321,12 +340,13 @@ class Skoring extends Component
                     'outranking_flow' => $leaving_flow - $entering_flow
                 ]);
         }
+        $this->matriks_outranking = ProAlternative::where('beasiswas_id', $this->beasiswa->id)->get()->sortBy(function($q){return $q->getPendaftar->nama;});
     }
 
     public function step6()
     {
-        $this->matriks_outranking = ProAlternative::where('beasiswas_id', $this->beasiswa->id)->get()->sortBy(function($q){return $q->getPendaftar->nama;});
-        $ranking = ProAlternative::where('beasiswas_id', $this->beasiswa->id)->orderBy('outranking_flow', 'asc')->get();
+        
+        $ranking = ProAlternative::where('beasiswas_id', $this->beasiswa->id)->orderBy('outranking_flow', 'desc')->get();
         
         $counter=1;
         foreach ($ranking as $item) {
@@ -346,6 +366,6 @@ class Skoring extends Component
             $counter++;
         }
 
-        $this->matriks_ranking = ProAlternative::select('id', 'pendaftars_id','ranking')->where('beasiswas_id', $this->beasiswa->id)->orderBy('ranking', 'asc')->get();
+        $this->matriks_ranking = ProAlternative::select('id', 'pendaftars_id','outranking_flow','ranking')->where('beasiswas_id', $this->beasiswa->id)->orderBy('ranking', 'asc')->get();
     }
 }
